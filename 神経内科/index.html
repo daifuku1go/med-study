@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>脳神経内科 学習ウィジェット</title>
+<style>
+  :root{--bg:#0f1117;--card:#1a1d27;--border:#2e3150;--accent:#6c8fff;--text:#e2e8f0;--muted:#8892b0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Gothic',sans-serif;min-height:100vh;padding:40px 20px}
+  h1{text-align:center;font-size:24px;color:var(--accent);margin-bottom:8px}
+  .subtitle{text-align:center;color:var(--muted);font-size:13px;margin-bottom:40px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;max-width:900px;margin:0 auto}
+  .item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-decoration:none;color:var(--text);transition:all .2s;display:block}
+  .item:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 20px rgba(108,143,255,.2)}
+  .item-num{font-size:28px;margin-bottom:8px}
+  .item-title{font-size:16px;font-weight:bold;margin-bottom:6px}
+  .item-desc{font-size:12px;color:var(--muted);line-height:1.6}
+  .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;margin-top:8px;background:#1e3a5f;color:#60a5fa}
+</style>
+</head>
+<body>
+<h1>🧠 脳神経内科 学習ウィジェット</h1>
+<p class="subtitle">M2 神経内科 試験対策　各セクションをクリック</p>
+<div class="grid">
+  <a class="item" href="02_脱髄感染症.html">
+    <div class="item-num">②</div>
+    <div class="item-title">脱髄・感染症</div>
+    <div class="item-desc">MS / NMOSD / ADEM<br>単純ヘルペス脳炎・髄膜炎<br>自己免疫性脳炎（抗NMDA受容体）</div>
+    <span class="badge">過去問5問</span>
+  </a>
+  <a class="item" href="03_脳血管障害.html">
+    <div class="item-num">③</div>
+    <div class="item-title">脳血管障害</div>
+    <div class="item-desc">脳梗塞3病型・rt-PA・血管内治療<br>脳出血・くも膜下出血<br>TIA・もやもや病・CVST</div>
+    <span class="badge">過去問5問</span>
+  </a>
+  <a class="item" href="04_発作性疾患.html">
+    <div class="item-num">④</div>
+    <div class="item-title">発作性疾患</div>
+    <div class="item-desc">てんかん分類・抗てんかん薬<br>片頭痛・群発頭痛・緊張型頭痛<br>失神・三叉神経痛・ナルコレプシー</div>
+    <span class="badge">過去問5問</span>
+  </a>
+  <a class="item" href="05_筋疾患NMJ.html">
+    <div class="item-num">⑤</div>
+    <div class="item-title">筋疾患・NMJ</div>
+    <div class="item-desc">重症筋無力症 vs LEMS<br>筋ジストロフィー（DMD・DM1）<br>炎症性筋疾患（PM・DM・IBM）</div>
+    <span class="badge">過去問5問</span>
+  </a>
+  <a class="item" href="06_認知症ニューロパチー代謝.html">
+    <div class="item-num">⑥</div>
+    <div class="item-title">認知症・ニューロパチー・代謝疾患</div>
+    <div class="item-desc">Alzheimer / Lewy / FTD / CJD<br>GBS・Fisher・CIDP・CMT・FAP<br>ALD・Gaucher・ビタミン欠乏</div>
+    <span class="badge">過去問10問</span>
+  </a>
+</div>
+</body>
+</html>

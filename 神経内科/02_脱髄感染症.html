@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>② 脱髄・感染症</title>
+<style>
+  :root { --bg:#0f1117;--card:#1a1d27;--border:#2e3150;--accent:#6c8fff;--accent2:#a78bfa;--accent3:#34d399;--warn:#f59e0b;--danger:#f87171;--text:#e2e8f0;--muted:#8892b0; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Gothic',sans-serif;font-size:14px;line-height:1.6}
+  h1{text-align:center;padding:20px;font-size:20px;color:var(--accent);border-bottom:1px solid var(--border)}
+  .tabs{display:flex;border-bottom:2px solid var(--border);background:var(--card);flex-wrap:wrap}
+  .tab{padding:12px 18px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-size:13px}
+  .tab:hover{color:var(--text)}
+  .tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:bold}
+  .panel{display:none;padding:20px;max-width:1000px;margin:0 auto}
+  .panel.active{display:block}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+  .card h3{color:var(--accent2);margin-bottom:10px;font-size:15px}
+  .section-title{font-size:17px;color:var(--accent);margin:20px 0 12px;border-left:3px solid var(--accent);padding-left:10px}
+  table{width:100%;border-collapse:collapse;margin:10px 0}
+  th{background:#252840;color:var(--accent);padding:8px;text-align:left;font-size:12px}
+  td{padding:7px 8px;border-top:1px solid var(--border);font-size:13px;vertical-align:top}
+  tr:hover td{background:#1e2235}
+  .tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;margin:2px}
+  .tag-blue{background:#1e3a5f;color:#60a5fa}.tag-purple{background:#2d1f4e;color:#c084fc}.tag-green{background:#14332a;color:#4ade80}.tag-orange{background:#3d2a00;color:#fbbf24}.tag-red{background:#3d1515;color:#f87171}
+  .key{color:var(--warn);font-weight:bold}.danger{color:var(--danger);font-weight:bold}.good{color:var(--accent3);font-weight:bold}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+  .flow-item{background:#252840;border-radius:6px;padding:4px 10px;font-size:12px}
+  .arrow{color:var(--muted)}
+  ul{padding-left:18px}li{margin-bottom:4px;font-size:13px}
+  .box{padding:12px;background:#13162a;border-radius:8px;margin-top:10px;font-size:13px;line-height:1.8}
+  /* quiz */
+  .quiz-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+  .quiz-q{font-weight:bold;margin-bottom:14px;font-size:14px;line-height:1.8}
+  .quiz-year{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .options{display:grid;gap:8px}
+  .option{padding:10px 14px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:13px}
+  .option:hover{border-color:var(--accent);background:#1e2235}
+  .option.correct{border-color:var(--accent3);background:#14332a;color:#4ade80}
+  .option.wrong{border-color:var(--danger);background:#3d1515;color:var(--danger)}
+  .explanation{margin-top:14px;padding:12px;background:#13162a;border-radius:8px;font-size:13px;line-height:1.8;display:none}
+  .explanation.show{display:block}
+  .score-board{text-align:center;padding:16px;background:var(--card);border-radius:10px;margin-bottom:20px;font-size:16px}
+  .score-num{font-size:28px;color:var(--accent);font-weight:bold}
+  .reset-btn{display:block;margin:10px auto;padding:10px 24px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px}
+</style>
+</head>
+<body>
+<h1>② 脱髄・感染症</h1>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">🔵 MS / NMOSD</div>
+  <div class="tab" onclick="switchTab(1)">🟡 ADEM・その他脱髄</div>
+  <div class="tab" onclick="switchTab(2)">🦠 感染性脳炎・髄膜炎</div>
+  <div class="tab" onclick="switchTab(3)">📝 過去問クイズ</div>
+</div>
+
+<!-- TAB 1: MS/NMOSD -->
+<div class="panel active" id="panel-0">
+  <div class="section-title">多発性硬化症（MS）vs 視神経脊髄炎（NMOSD）</div>
+  <div class="card">
+    <table>
+      <tr><th></th><th>多発性硬化症（MS）</th><th>NMOSD（AQP4抗体関連）</th></tr>
+      <tr><td>好発</td><td>20〜40歳代女性・北欧多い</td><td>30〜50歳代女性・アジア多い</td></tr>
+      <tr><td>特徴的病変</td><td>脳室周囲・脳梁・皮質下・<span class="key">Dawson指</span><br>視神経・脊髄（≤2椎体）</td><td><span class="key">視神経（長い）</span>・脊髄（≥3椎体：LETM）<br>最後野（嘔気・吃逆）・視床下部</td></tr>
+      <tr><td>抗体</td><td>OCB（髄液寡クローン性IgG）<br>抗MOG抗体（一部）</td><td><span class="key">抗AQP4抗体</span>（70〜80%）<br>抗MOG抗体（AQP4陰性NMOSDに一部）</td></tr>
+      <tr><td>MRI</td><td>T2/FLAIR白質高信号<br>Gd造影で活動病変増強<br>脳梁下面病変（Dawson指）</td><td><span class="key">脊髄中心部・灰白質優位</span><br>視神経の長い高信号（>1/2長）</td></tr>
+      <tr><td>髄液</td><td>OCB陽性（85〜90%）・IgG index↑</td><td>好中球増多（急性期）・OCBは低率</td></tr>
+      <tr><td>再発</td><td>再発寛解型（RRMS）が多い</td><td>再発時に<span class="danger">重篤な後遺症</span>が残りやすい</td></tr>
+      <tr><td>急性期治療</td><td>ステロイドパルス（mPSL 1g×3日）</td><td>ステロイドパルス（大量・長期）<br>血漿交換（重症時）</td></tr>
+      <tr><td>再発予防</td><td>IFN-β・グラチラマー・フィンゴリモド<br>ナタリズマブ・オクレリズマブ</td><td><span class="key">ステロイド維持・アザチオプリン</span><br>エクリズマブ・イネビリズマブ</td></tr>
+      <tr><td>禁忌</td><td>—</td><td><span class="danger">ナタリズマブ・フィンゴリモド（MS向け）→NMOSD悪化</span></td></tr>
+    </table>
+    <div class="box">
+      <span class="danger">⚠ 重要：</span>MS治療薬のナタリズマブ・フィンゴリモドはNMOSDには<strong>禁忌</strong>（悪化させる）
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>MSの診断基準（McDonald 2017）</h3>
+    <ul>
+      <li><span class="key">時間的多発性</span>：異なる時期に生じた病変</li>
+      <li><span class="key">空間的多発性</span>：CNS内の異なる部位に病変（脳室周囲・皮質近傍・テント下・脊髄）</li>
+      <li>1回の臨床発作のみでも、MRI・髄液（OCB）で診断可能</li>
+    </ul>
+    <div style="margin-top:10px">
+      <h4 style="color:var(--accent3);margin-bottom:6px">特徴的症状</h4>
+      <table>
+        <tr><th>症状</th><th>機序</th></tr>
+        <tr><td><span class="key">Uhthoff現象</span></td><td>体温上昇（入浴・運動）で症状悪化→脱髄部位の伝導障害</td></tr>
+        <tr><td>Lhermitte徴候</td><td>頸部前屈で電気様しびれが下行→後索（頸髄）脱髄</td></tr>
+        <tr><td>核間眼筋麻痺（INO）</td><td>内側縦束（MLF）病変→患側内直筋麻痺・健側眼振</td></tr>
+        <tr><td>視神経炎</td><td>視力低下・眼痛（眼球運動時）・相対的瞳孔求心路障害（RAPD）</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2: ADEM・その他 -->
+<div class="panel" id="panel-1">
+  <div class="section-title">急性散在性脳脊髄炎（ADEM）</div>
+  <div class="card">
+    <h3>ADEM vs MS</h3>
+    <table>
+      <tr><th></th><th>ADEM</th><th>MS（初発）</th></tr>
+      <tr><td>契機</td><td>感染・<span class="key">ワクチン後</span>（1〜3週）</td><td>なし（特発性）</td></tr>
+      <tr><td>好発年齢</td><td>小児（5〜10歳）</td><td>20〜40歳代</td></tr>
+      <tr><td>意識障害</td><td><span class="key">あり（頻度高）</span></td><td>まれ</td></tr>
+      <tr><td>病変</td><td>多発・両側性・灰白質にも</td><td>白質優位・非対称</td></tr>
+      <tr><td>OCB</td><td>通常陰性</td><td>陽性（85〜90%）</td></tr>
+      <tr><td>経過</td><td><span class="key">単相性（再発なし）</span></td><td>再発・寛解</td></tr>
+      <tr><td>抗体</td><td>抗MOG抗体（小児に多い）</td><td>OCB・抗AQP4（鑑別）</td></tr>
+      <tr><td>治療</td><td>ステロイドパルス・IVIG</td><td>ステロイドパルス＋疾患修飾薬</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">中枢神経原発脱髄疾患 比較</div>
+  <div class="card">
+    <h3>その他の脱髄疾患</h3>
+    <table>
+      <tr><th>疾患</th><th>特徴</th><th>鑑別点</th></tr>
+      <tr><td>抗MOG抗体関連疾患（MOGAD）</td><td>視神経炎・ADEM様・LETM<br>AQP4陰性NMOSDに重なる</td><td>皮質脳炎・小脳炎・髄液好中球↑<br>治療反応良好・再発例もあり</td></tr>
+      <tr><td>橋中央髄鞘崩壊症（CPM）</td><td><span class="key">急速な低Na血症補正</span>後に発症</td><td>橋の中央に脱髄病変・四肢麻痺・構音障害<br>補正速度：≤10 mEq/L/日を守る</td></tr>
+      <tr><td>進行性多巣性白質脳症（PML）</td><td>JCウイルス再活性化<br><span class="key">免疫不全（HIV・ナタリズマブ）</span></td><td>白質病変・認知低下・Gd増強なし</td></tr>
+      <tr><td>CADASIL</td><td>NOTCH3変異・AD<br>前頭葉・側頭極白質病変</td><td>若年脳梗塞・片頭痛・認知症<br>皮膚生検（電顕でGOM沈着）</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TAB 3: 感染症 -->
+<div class="panel" id="panel-2">
+  <div class="section-title">感染性脳炎の比較</div>
+  <div class="card">
+    <table>
+      <tr><th>疾患</th><th>原因</th><th>特徴的所見</th><th>治療</th></tr>
+      <tr><td><span class="tag tag-red">単純ヘルペス脳炎</span></td><td>HSV-1</td><td>発熱・意識障害・痙攣<br><span class="key">側頭葉・島皮質病変</span><br>脳波：<span class="key">PLEDs</span>（一側性）</td><td><span class="key">アシクロビル静注</span><br>（10mg/kg×14〜21日）</td></tr>
+      <tr><td><span class="tag tag-orange">日本脳炎</span></td><td>日本脳炎ウイルス（蚊媒介）</td><td><span class="key">視床・基底核・脳幹</span>T2高信号<br>高熱・意識障害・パーキンソニズム</td><td>対症療法（ワクチン予防）</td></tr>
+      <tr><td><span class="tag tag-purple">結核性髄膜炎</span></td><td>Mycobacterium tuberculosis</td><td>慢性経過・脳底部髄膜炎<br>髄液：糖↓・蛋白↑・単核球増多<br><span class="key">水頭症・脳神経麻痺</span></td><td>HRZE（4剤）+ステロイド</td></tr>
+      <tr><td><span class="tag tag-green">クリプトコッカス髄膜炎</span></td><td>Cryptococcus neoformans</td><td>免疫不全（HIV等）<br>墨汁染色・<span class="key">莢膜抗原</span>陽性<br>頭蓋内圧↑（視力障害）</td><td>アムホテリシンB＋フルシトシン→フルコナゾール維持</td></tr>
+      <tr><td><span class="tag tag-blue">急性細菌性髄膜炎</span></td><td>肺炎球菌・髄膜炎菌</td><td>Kernig・Brudzinski・項部硬直<br>髄液：白血球↑（好中球）・糖↓・蛋白↑</td><td>セフトリアキソン＋デキサメタゾン（デキサを先に）</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>髄液所見の比較</h3>
+    <table>
+      <tr><th>疾患</th><th>外観</th><th>細胞数</th><th>糖</th><th>蛋白</th></tr>
+      <tr><td>正常</td><td>清澄</td><td>&lt;5（単核球）</td><td>50〜75（血糖の2/3）</td><td>15〜45 mg/dL</td></tr>
+      <tr><td>細菌性髄膜炎</td><td>混濁</td><td><span class="key">↑↑（好中球優位）</span></td><td><span class="danger">↓↓</span></td><td>↑↑</td></tr>
+      <tr><td>ウイルス性脳炎</td><td>清澄〜淡黄</td><td>↑（単核球優位）</td><td>正常〜軽度↓</td><td>↑</td></tr>
+      <tr><td>結核性</td><td>淡黄〜フィブリン</td><td>↑（単核球）</td><td><span class="danger">↓</span></td><td>↑↑</td></tr>
+      <tr><td>GBS</td><td>清澄</td><td><span class="key">正常</span></td><td>正常</td><td><span class="key">↑（蛋白細胞解離）</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>自己免疫性脳炎</h3>
+    <table>
+      <tr><th>疾患</th><th>抗体</th><th>特徴</th><th>腫瘍合併</th></tr>
+      <tr><td>抗NMDA受容体脳炎</td><td><span class="key">抗GluN1（NR1）抗体</span></td><td>若年女性・精神症状→意識障害→不随意運動→自律神経障害<br>卵巣奇形腫に多い</td><td>卵巣奇形腫（50%）</td></tr>
+      <tr><td>抗LGI1脳炎</td><td>抗LGI1抗体</td><td>中高年男性・<span class="key">顔面上肢ジストニア発作</span><br>低Na血症（SIADH）</td><td>胸腺腫（稀）</td></tr>
+      <tr><td>抗CASPR2脳炎</td><td>抗CASPR2抗体</td><td>辺縁系脳炎・Morvan症候群<br>過眠・幻覚・筋線維束攣縮</td><td>胸腺腫</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TAB 4: クイズ -->
+<div class="panel" id="panel-3">
+  <div class="score-board">正解数：<span class="score-num" id="score">0</span> / <span id="total">0</span><button class="reset-btn" onclick="resetQuiz()">リセット</button></div>
+  <div id="quiz-container"></div>
+</div>
+
+<script>
+function switchTab(i){document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',i===j));}
+const quizData=[
+  {year:'2024年度',q:'28歳女性。右眼の視力低下と眼球運動時の眼痛で発症。MRIで視神経に高信号、脊髄にも2椎体以下の病変を認める。髄液でOCB陽性、IgG index上昇。診断と再発予防に使う薬剤は？',options:['NMOSD → アザチオプリン','多発性硬化症 → IFN-β','ADEM → ステロイド内服維持','MOGADあ → リツキシマブ','CIS → 経過観察'],answer:1,exp:'視神経炎＋脊髄病変（≤2椎体）＋OCB陽性＋IgG index上昇はMSの典型像。McDonald基準2017で診断。再発予防にIFN-β・グラチラマー・フィンゴリモド等の疾患修飾薬（DMT）。NMOSDは抗AQP4抗体・脊髄≥3椎体（LETM）・OCBは低率・アジア女性に多い。MS向けのナタリズマブはNMOSDを悪化させるため禁忌。'},
+  {year:'2023年度',q:'35歳女性。嘔気・吃逆が3週間持続した後、右眼視力低下と対麻痺が出現。MRIで頸髄に3椎体以上の中心性病変を認めた。抗体検査で陽性となる可能性が最も高いものはどれか。',options:['抗MOG IgG抗体','抗AQP4抗体','抗GQ1b IgG抗体','抗NMDA受容体抗体','抗Hu抗体'],answer:1,exp:'嘔気・吃逆は最後野（area postrema）病変の特徴でNMOSD（視神経脊髄炎スペクトラム）に特徴的。脊髄LETM（3椎体以上）・視神経炎の組み合わせ＋抗AQP4抗体陽性（70〜80%）で診断。抗MOG抗体はMOGADで陽性。NMOSDの急性期はステロイドパルス＋血漿交換、再発予防はアザチオプリン・エクリズマブ。'},
+  {year:'2022年度',q:'7歳男児。上気道炎の10日後から発熱・意識障害・けいれんが出現。MRIで大脳白質に多発・両側対称性のT2高信号病変を認め、皮質にも一部及んでいる。髄液OCBは陰性。最も考えられる診断は？',options:['多発性硬化症（MS）','急性散在性脳脊髄炎（ADEM）','単純ヘルペス脳炎','自己免疫性脳炎','進行性多巣性白質脳症（PML）'],answer:1,exp:'ADEMの典型例。感染・ワクチン後1〜3週の小児に多い。意識障害・けいれん・両側対称性白質病変（＋灰白質にも及ぶ）・OCB陰性・単相性経過が特徴。MSとの鑑別：ADEMは単相性・意識障害あり・OCB陰性・小児。治療はステロイドパルス。単純ヘルペス脳炎は側頭葉・PLEDs・アシクロビルで治療。'},
+  {year:'2025年度',q:'26歳女性。精神症状（幻覚・奇異行動）で精神科に入院後、急速に意識障害・口の不随意運動・自律神経不安定が出現した。MRIは正常。画像検索で卵巣に腫瘤を認めた。治療として最優先すべきことは？',options:['抗てんかん薬を増量する','卵巣腫瘤の摘出＋免疫療法','アシクロビル静注を開始する','ステロイド単独で維持する','抗精神病薬を増量する'],answer:1,exp:'抗NMDA受容体脳炎の典型例（抗GluN1/NR1抗体）。若年女性・精神症状→意識障害→口の不随意運動（口部自動症）→自律神経障害の経過。卵巣奇形腫合併が50%。治療の最優先は腫瘍摘出（原因除去）＋免疫療法（ステロイドパルス・IVIG・血漿交換）。抗てんかん薬は補助的。アシクロビルはヘルペス脳炎用。'},
+  {year:'2024年度',q:'65歳男性。低Na血症（Na 122 mEq/L）に対して急速に生理食塩水で補正（24時間で18 mEq/L上昇）した翌日から、構音障害・嚥下障害・四肢麻痺が出現した。MRIで橋中央の高信号を認めた。診断は？',options:['脳幹梗塞','多発性硬化症','橋中央髄鞘崩壊症（CPM）','GBS','Wernicke脳症'],answer:2,exp:'橋中央髄鞘崩壊症（CPM）。低Na血症の急速補正（>10〜12 mEq/L/日を超える）により、浸透圧変化で橋の有髄線維が脱髄する。橋中央のMRI T2高信号・四肢麻痺・偽性球麻痺が特徴的。「locked-in症候群」様呈することも。予防が重要：補正速度≤10 mEq/L/日。橋外への波及（浸透圧性脱髄症候群：ODS）も起こりうる。'}
+];
+let scores=0;
+function buildQuiz(){const c=document.getElementById('quiz-container');document.getElementById('total').textContent=quizData.length;c.innerHTML=quizData.map((q,qi)=>`<div class="quiz-card" id="qcard-${qi}"><div class="quiz-year">${q.year}</div><div class="quiz-q">Q${qi+1}. ${q.q}</div><div class="options">${q.options.map((o,oi)=>`<div class="option" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</div>`).join('')}</div><div class="explanation" id="exp-${qi}"><span class="good">✓ 正解：${String.fromCharCode(65+q.answer)}. ${q.options[q.answer]}</span><br><br>${q.exp}</div></div>`).join('');}
+function answer(qi,oi){const q=quizData[qi];const card=document.getElementById('qcard-'+qi);if(card.dataset.done)return;card.dataset.done='1';document.querySelectorAll(`[id^="opt-${qi}-"]`).forEach(el=>el.style.pointerEvents='none');document.getElementById(`opt-${qi}-${oi}`).classList.add(oi===q.answer?'correct':'wrong');if(oi!==q.answer)document.getElementById(`opt-${qi}-${q.answer}`).classList.add('correct');document.getElementById('exp-'+qi).classList.add('show');if(oi===q.answer){scores++;document.getElementById('score').textContent=scores;}}
+function resetQuiz(){scores=0;document.getElementById('score').textContent=0;buildQuiz();}
+buildQuiz();
+</script>
+</body>
+</html>

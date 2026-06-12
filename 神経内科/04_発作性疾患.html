@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>④ 発作性疾患</title>
+<style>
+  :root{--bg:#0f1117;--card:#1a1d27;--border:#2e3150;--accent:#6c8fff;--accent2:#a78bfa;--accent3:#34d399;--warn:#f59e0b;--danger:#f87171;--text:#e2e8f0;--muted:#8892b0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Gothic',sans-serif;font-size:14px;line-height:1.6}
+  h1{text-align:center;padding:20px;font-size:20px;color:var(--accent);border-bottom:1px solid var(--border)}
+  .tabs{display:flex;border-bottom:2px solid var(--border);background:var(--card);flex-wrap:wrap}
+  .tab{padding:12px 18px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-size:13px}
+  .tab:hover{color:var(--text)}.tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:bold}
+  .panel{display:none;padding:20px;max-width:1000px;margin:0 auto}.panel.active{display:block}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+  .card h3{color:var(--accent2);margin-bottom:10px;font-size:15px}
+  .section-title{font-size:17px;color:var(--accent);margin:20px 0 12px;border-left:3px solid var(--accent);padding-left:10px}
+  table{width:100%;border-collapse:collapse;margin:10px 0}
+  th{background:#252840;color:var(--accent);padding:8px;text-align:left;font-size:12px}
+  td{padding:7px 8px;border-top:1px solid var(--border);font-size:13px;vertical-align:top}
+  tr:hover td{background:#1e2235}
+  .tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;margin:2px}
+  .tag-blue{background:#1e3a5f;color:#60a5fa}.tag-purple{background:#2d1f4e;color:#c084fc}.tag-green{background:#14332a;color:#4ade80}.tag-orange{background:#3d2a00;color:#fbbf24}.tag-red{background:#3d1515;color:#f87171}
+  .key{color:var(--warn);font-weight:bold}.danger{color:var(--danger);font-weight:bold}.good{color:var(--accent3);font-weight:bold}
+  ul{padding-left:18px}li{margin-bottom:4px;font-size:13px}
+  .box{padding:12px;background:#13162a;border-radius:8px;margin-top:10px;font-size:13px;line-height:1.8}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+  .flow-item{background:#252840;border-radius:6px;padding:4px 10px;font-size:12px}
+  .arrow{color:var(--muted)}
+  .quiz-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+  .quiz-q{font-weight:bold;margin-bottom:14px;font-size:14px;line-height:1.8}
+  .quiz-year{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .options{display:grid;gap:8px}
+  .option{padding:10px 14px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:13px}
+  .option:hover{border-color:var(--accent);background:#1e2235}
+  .option.correct{border-color:var(--accent3);background:#14332a;color:#4ade80}
+  .option.wrong{border-color:var(--danger);background:#3d1515;color:var(--danger)}
+  .explanation{margin-top:14px;padding:12px;background:#13162a;border-radius:8px;font-size:13px;line-height:1.8;display:none}
+  .explanation.show{display:block}
+  .score-board{text-align:center;padding:16px;background:var(--card);border-radius:10px;margin-bottom:20px;font-size:16px}
+  .score-num{font-size:28px;color:var(--accent);font-weight:bold}
+  .reset-btn{display:block;margin:10px auto;padding:10px 24px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px}
+</style>
+</head>
+<body>
+<h1>④ 発作性疾患</h1>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">⚡ てんかん</div>
+  <div class="tab" onclick="switchTab(1)">🤕 頭痛</div>
+  <div class="tab" onclick="switchTab(2)">😵 失神・その他</div>
+  <div class="tab" onclick="switchTab(3)">📝 過去問クイズ</div>
+</div>
+
+<!-- TAB1: てんかん -->
+<div class="panel active" id="panel-0">
+  <div class="section-title">てんかん発作の分類（ILAE 2017）</div>
+  <div class="card">
+    <table>
+      <tr><th>分類</th><th>発作型</th><th>特徴</th></tr>
+      <tr><td rowspan="3"><span class="tag tag-blue">焦点起始</span></td><td>焦点意識保持発作（単純部分）</td><td>意識保持・局所症状（運動・感覚・自律神経・精神）</td></tr>
+      <tr><td>焦点意識減損発作（複雑部分）</td><td>意識障害＋自動症（口部・手）・側頭葉起源が多い</td></tr>
+      <tr><td>焦点→両側強直間代発作</td><td>焦点発作から二次般化</td></tr>
+      <tr><td rowspan="3"><span class="tag tag-purple">全般起始</span></td><td>強直間代発作（GTCS）</td><td>突然の意識消失・強直→間代・舌咬傷・尿失禁・Todd麻痺</td></tr>
+      <tr><td>欠神発作</td><td>小児：突然の意識消失（数秒）・3Hz棘徐波・過換気で誘発</td></tr>
+      <tr><td>ミオクローヌス発作</td><td>突然の筋収縮・意識保持・青年期JMEに多い</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">抗てんかん薬（AED）の選択</div>
+  <div class="card">
+    <table>
+      <tr><th>発作型</th><th>第一選択</th><th>注意薬剤</th></tr>
+      <tr><td>焦点発作</td><td>カルバマゼピン・レベチラセタム・ラモトリギン</td><td>—</td></tr>
+      <tr><td>全般発作（強直間代）</td><td>バルプロ酸・レベチラセタム・ラモトリギン</td><td>カルバマゼピン→<span class="danger">悪化（全般発作）</span></td></tr>
+      <tr><td>欠神発作</td><td><span class="key">エトサクシミド</span>・バルプロ酸</td><td>カルバマゼピン→<span class="danger">悪化</span></td></tr>
+      <tr><td>JME（若年性ミオクローヌス）</td><td>バルプロ酸・レベチラセタム</td><td>バルプロ酸は<span class="danger">催奇形性（妊婦禁忌）</span></td></tr>
+      <tr><td>West症候群（点頭てんかん）</td><td><span class="key">ACTH療法</span>・ビガバトリン</td><td>乳児期発症・Hypsarrhythmia（脳波）</td></tr>
+      <tr><td>Lennox-Gastaut症候群</td><td>バルプロ酸・ルフィナミド・クロバザム</td><td>難治性・多彩な発作型</td></tr>
+    </table>
+    <div class="box">
+      <span class="danger">⚠ カルバマゼピン</span>の注意点：<br>
+      ・欠神発作・全般発作に<strong>禁忌</strong>（悪化させる）<br>
+      ・HLA-B*1502（アジア人）で<strong>Stevens-Johnson症候群リスク↑</strong><br>
+      ・チトクロームP450誘導→多くの薬剤の血中濃度低下（経口避妊薬・ワルファリン等）
+    </div>
+  </div>
+
+  <div class="section-title">てんかん重積状態（SE）</div>
+  <div class="card">
+    <h3>治療アルゴリズム（強直間代重積）</h3>
+    <div class="flow">
+      <div class="flow-item">0〜5分：気道確保・酸素・ルート確保</div>
+      <div class="arrow">→</div>
+      <div class="flow-item" style="background:#1e3a5f;color:#60a5fa"><span class="key">5〜20分：ジアゼパム静注</span>（またはミダゾラム筋注）</div>
+      <div class="arrow">→</div>
+      <div class="flow-item"><span class="key">20〜40分：フェニトイン（またはレベチラセタム）静注</span></div>
+      <div class="arrow">→</div>
+      <div class="flow-item" style="background:#3d1515;color:#f87171">40分〜：全身麻酔（チオペンタール・プロポフォール）</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB2: 頭痛 -->
+<div class="panel" id="panel-1">
+  <div class="section-title">一次性頭痛の鑑別</div>
+  <div class="card">
+    <table>
+      <tr><th></th><th>片頭痛</th><th>緊張型頭痛</th><th>群発頭痛</th></tr>
+      <tr><td>性別</td><td>女性多い（3:1）</td><td>やや女性多</td><td><span class="key">男性多い（6:1）</span></td></tr>
+      <tr><td>部位</td><td>片側（60%）</td><td>両側・後頭〜頸部</td><td><span class="key">片側眼窩周囲</span></td></tr>
+      <tr><td>性状</td><td>拍動性・中〜重度</td><td>圧迫感・軽〜中等度</td><td><span class="key">灼熱感・激痛（自殺頭痛）</span></td></tr>
+      <tr><td>持続時間</td><td>4〜72時間</td><td>30分〜7日</td><td><span class="key">15〜180分</span></td></tr>
+      <tr><td>随伴症状</td><td>悪心・嘔吐・光過敏・音過敏<br>前兆（閃輝暗点・感覚障害）</td><td>随伴症状なし</td><td><span class="key">同側：流涙・鼻汁・Horner症候群・眼充血</span><br>興奮・歩き回る</td></tr>
+      <tr><td>増悪因子</td><td>体動で悪化・光・音</td><td>体動で変化なし</td><td>アルコール・ニトログリセリン</td></tr>
+      <tr><td>急性期治療</td><td><span class="key">トリプタン製剤</span>（スマトリプタン）<br>NSAIDs・エルゴタミン</td><td>NSAIDs・アセトアミノフェン</td><td><span class="key">純酸素吸入（100%・7L/分）</span><br>スマトリプタン皮下注</td></tr>
+      <tr><td>予防治療</td><td>プロプラノロール・バルプロ酸<br>アミトリプチリン・CGRP抗体</td><td>アミトリプチリン・筋弛緩薬</td><td><span class="key">ベラパミル</span>・短期：ステロイド</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>片頭痛の前兆（Aura）</h3>
+    <ul>
+      <li><span class="key">閃輝暗点（scintillating scotoma）</span>：ジグザグの光が視野に広がり暗点が残る（20〜30分）</li>
+      <li>感覚異常：片側の手〜口周囲へ広がるしびれ</li>
+      <li>失語・運動症状（片麻痺性片頭痛）</li>
+      <li>前兆は可逆的・60分以内に消失</li>
+    </ul>
+    <div class="box">
+      <span class="danger">⚠</span> 前兆のある片頭痛＋<strong>経口避妊薬（OC）</strong>→<strong>脳梗塞リスク↑↑（禁忌）</strong>
+    </div>
+  </div>
+
+  <div class="section-title">二次性頭痛の危険サイン（Red Flags）</div>
+  <div class="card">
+    <ul>
+      <li>「<span class="key">人生最悪の頭痛</span>」・突然発症→SAH</li>
+      <li>発熱＋頸部硬直→髄膜炎</li>
+      <li>50歳以上の新規頭痛・進行性頭痛→腫瘍・硬膜下血腫</li>
+      <li>神経局所症状・乳頭浮腫→頭蓋内圧亢進</li>
+      <li>体位変化で増悪→低髄液圧（脳脊髄液漏出症）・高頭蓋内圧</li>
+      <li>HIV・免疫不全→クリプトコッカス髄膜炎</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TAB3: 失神・その他 -->
+<div class="panel" id="panel-2">
+  <div class="section-title">失神の分類と鑑別</div>
+  <div class="card">
+    <table>
+      <tr><th>分類</th><th>機序</th><th>特徴</th><th>診断</th></tr>
+      <tr><td><span class="tag tag-blue">神経調節性（血管迷走神経性）</span></td><td>迷走神経反射→心拍数↓・血圧↓</td><td>誘因あり（痛み・採血・長時間起立）<br>前駆症状（悪心・冷汗・顔面蒼白）</td><td>ヘッドアップチルト試験</td></tr>
+      <tr><td><span class="tag tag-orange">起立性低血圧</span></td><td>体位変換時の血圧調節不全</td><td>臥位→立位で収縮期20mmHg↓<br>自律神経障害・脱水・薬剤</td><td>起立試験（Schellong）</td></tr>
+      <tr><td><span class="tag tag-red">心原性</span></td><td>不整脈・構造的心疾患</td><td>前駆症状なし・仰臥位でも起こる<br><span class="key">労作時・胸痛合併→危険</span></td><td>心電図・ホルター・心エコー</td></tr>
+      <tr><td><span class="tag tag-purple">てんかん（偽性失神）</span></td><td>大脳皮質の過同期</td><td>強直間代・咬舌・尿失禁<br>長い意識消失・Todd麻痺</td><td>脳波・MRI</td></tr>
+    </table>
+    <div class="box"><span class="danger">⚠</span> QT延長症候群（先天性・薬剤性）→Torsades de pointes→失神・突然死。心電図でQTc延長（男性>450ms・女性>460ms）を確認</div>
+  </div>
+
+  <div class="section-title">その他の発作性疾患</div>
+  <div class="card">
+    <table>
+      <tr><th>疾患</th><th>特徴</th><th>治療</th></tr>
+      <tr><td>三叉神経痛</td><td>顔面の<span class="key">電撃様・突発性疼痛</span>（秒単位）<br>誘発点（trigger zone）・食事・洗顔で誘発<br>高齢女性・三叉神経第2・3枝に多い</td><td><span class="key">カルバマゼピン（第一選択）</span><br>MVD（微小血管減圧術）</td></tr>
+      <tr><td>REM睡眠行動障害（RBD）</td><td>REM睡眠中の夢内容に一致した体動・叫び声<br><span class="key">αシヌクレイノパチーの前駆症状</span>（パーキンソン病・MSA・DLB）</td><td>クロナゼパム・メラトニン</td></tr>
+      <tr><td>ナルコレプシー</td><td>過眠・<span class="key">情動脱力発作（カタプレキシー）</span>・入眠時幻覚・睡眠麻痺<br>HLA-DQB1*06:02・オレキシン低下</td><td>モダフィニル（過眠）・三環系（カタプレキシー）</td></tr>
+      <tr><td>むずむず脚症候群（RLS）</td><td>下肢の不快感・夜間安静時増悪・体動で軽減<br>鉄欠乏・腎不全・妊娠に多い</td><td>ドパミンアゴニスト（プラミペキソール）・鉄補充</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TAB4: クイズ -->
+<div class="panel" id="panel-3">
+  <div class="score-board">正解数：<span class="score-num" id="score">0</span> / <span id="total">0</span><button class="reset-btn" onclick="resetQuiz()">リセット</button></div>
+  <div id="quiz-container"></div>
+</div>
+
+<script>
+function switchTab(i){document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',i===j));}
+const quizData=[
+  {year:'2024年度',q:'14歳女子。授業中に突然ぼーっとして10秒後に再び動き出す発作が1日数回ある。過換気で発作が誘発された。脳波で3Hz棘徐波複合を認めた。第一選択薬はどれか。',options:['カルバマゼピン','フェニトイン','エトサクシミド','フェノバルビタール','ガバペンチン'],answer:2,exp:'欠神発作の典型例。小児に多く、突然の短時間意識消失（数秒〜30秒）・過換気で誘発・3Hz棘徐波複合が特徴。第一選択はエトサクシミド（欠神発作特異的）またはバルプロ酸。カルバマゼピンは欠神発作・全般発作を悪化させるため禁忌。フェニトインも欠神発作には無効。'},
+  {year:'2023年度',q:'22歳男性。朝目覚め後すぐに両手がビクッとなる発作が毎朝ある。今朝は強直間代発作も起こした。睡眠不足・飲酒の翌朝に多い。診断と最適な治療薬は？',options:['側頭葉てんかん → カルバマゼピン','若年性ミオクローヌスてんかん（JME）→ バルプロ酸','West症候群 → ACTH療法','Lennox-Gastaut症候群 → ルフィナミド','特発性全般てんかん → フェニトイン'],answer:1,exp:'JME（若年性ミオクローヌスてんかん）の典型例。思春期〜青年期発症・覚醒直後のミオクローヌス・睡眠不足・アルコールで誘発・GTCS合併。第一選択はバルプロ酸（全般発作・ミオクローヌス両方に有効）。ただし催奇形性があるため妊娠可能女性にはレベチラセタムも考慮。カルバマゼピンはJMEを悪化させる。'},
+  {year:'2025年度',q:'35歳女性。月2〜3回、右側頭部の拍動性頭痛（4〜72時間）と悪心・光過敏を繰り返す。前兆として視野に光のジグザグが出現する。月経周期と一致することが多い。急性期治療として最適なのはどれか。',options:['純酸素吸入（100%・7L/分）','スマトリプタン（トリプタン製剤）','エルゴタミン＋カフェイン','アセトアミノフェン定期内服','ベラパミル'],answer:1,exp:'前兆のある片頭痛の典型例。拍動性・片側・悪心・光過敏・閃輝暗点（視野のジグザグ光）が特徴。急性期第一選択はトリプタン製剤（スマトリプタン：5-HT1B/1D受容体作動薬→脳血管収縮・三叉神経末梢からの炎症性物質放出抑制）。純酸素は群発頭痛の急性期治療。ベラパミルは群発頭痛の予防。前兆あり片頭痛＋経口避妊薬は脳梗塞リスクで禁忌。'},
+  {year:'2022年度',q:'50歳男性。毎年秋になると右眼周囲に激烈な痛みが夜中に出現し、同側の流涙・鼻汁・眼充血を伴う。15〜60分で自然消失するが1日1〜2回数週間続く。最適な急性期治療は？',options:['NSAIDs経口投与','純酸素（100%）吸入','スマトリプタン経口投与','カルバマゼピン','コデイン'],answer:1,exp:'群発頭痛の典型例。中年男性・秋〜冬に集団発作（cluster period）・片側眼窩周囲の激烈な灼熱痛・同側の自律神経症状（流涙・鼻汁・Horner症候群・眼充血）・15〜180分・アルコールで誘発。急性期：純酸素（100%・7〜12L/分・15分）またはスマトリプタン皮下注が最速。予防：ベラパミル（第一選択）・短期にはステロイド。'},
+  {year:'2024年度',q:'三叉神経痛の第一選択薬とその作用機序はどれか。',options:['アミトリプチリン：ノルアドレナリン再取り込み阻害','プレガバリン：電位依存性Ca²⁺チャネルα2δサブユニット阻害','カルバマゼピン：電位依存性Na⁺チャネル阻害','インドメタシン：COX阻害','プロプラノロール：β遮断'],answer:2,exp:'三叉神経痛の第一選択はカルバマゼピン（電位依存性Na⁺チャネル阻害→神経の過剰な興奮を抑制）。三叉神経への血管圧迫が多くの原因で、MRI（FIESTA/CISS）で圧迫部位を確認。薬物治療無効例には微小血管減圧術（MVD）が根治的。アミトリプチリンは慢性疼痛・うつ。プレガバリンは神経障害性疼痛・てんかん。プロプラノロールは片頭痛予防。'}
+];
+let scores=0;
+function buildQuiz(){const c=document.getElementById('quiz-container');document.getElementById('total').textContent=quizData.length;c.innerHTML=quizData.map((q,qi)=>`<div class="quiz-card" id="qcard-${qi}"><div class="quiz-year">${q.year}</div><div class="quiz-q">Q${qi+1}. ${q.q}</div><div class="options">${q.options.map((o,oi)=>`<div class="option" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</div>`).join('')}</div><div class="explanation" id="exp-${qi}"><span class="good">✓ 正解：${String.fromCharCode(65+q.answer)}. ${q.options[q.answer]}</span><br><br>${q.exp}</div></div>`).join('');}
+function answer(qi,oi){const q=quizData[qi];const card=document.getElementById('qcard-'+qi);if(card.dataset.done)return;card.dataset.done='1';document.querySelectorAll(`[id^="opt-${qi}-"]`).forEach(el=>el.style.pointerEvents='none');document.getElementById(`opt-${qi}-${oi}`).classList.add(oi===q.answer?'correct':'wrong');if(oi!==q.answer)document.getElementById(`opt-${qi}-${q.answer}`).classList.add('correct');document.getElementById('exp-'+qi).classList.add('show');if(oi===q.answer){scores++;document.getElementById('score').textContent=scores;}}
+function resetQuiz(){scores=0;document.getElementById('score').textContent=0;buildQuiz();}
+buildQuiz();
+</script>
+</body>
+</html>

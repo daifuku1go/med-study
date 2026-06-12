@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>③ 脳血管障害</title>
+<style>
+  :root{--bg:#0f1117;--card:#1a1d27;--border:#2e3150;--accent:#6c8fff;--accent2:#a78bfa;--accent3:#34d399;--warn:#f59e0b;--danger:#f87171;--text:#e2e8f0;--muted:#8892b0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Gothic',sans-serif;font-size:14px;line-height:1.6}
+  h1{text-align:center;padding:20px;font-size:20px;color:var(--accent);border-bottom:1px solid var(--border)}
+  .tabs{display:flex;border-bottom:2px solid var(--border);background:var(--card);flex-wrap:wrap}
+  .tab{padding:12px 18px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-size:13px}
+  .tab:hover{color:var(--text)}.tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:bold}
+  .panel{display:none;padding:20px;max-width:1000px;margin:0 auto}.panel.active{display:block}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+  .card h3{color:var(--accent2);margin-bottom:10px;font-size:15px}
+  .section-title{font-size:17px;color:var(--accent);margin:20px 0 12px;border-left:3px solid var(--accent);padding-left:10px}
+  table{width:100%;border-collapse:collapse;margin:10px 0}
+  th{background:#252840;color:var(--accent);padding:8px;text-align:left;font-size:12px}
+  td{padding:7px 8px;border-top:1px solid var(--border);font-size:13px;vertical-align:top}
+  tr:hover td{background:#1e2235}
+  .tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;margin:2px}
+  .tag-blue{background:#1e3a5f;color:#60a5fa}.tag-purple{background:#2d1f4e;color:#c084fc}.tag-green{background:#14332a;color:#4ade80}.tag-orange{background:#3d2a00;color:#fbbf24}.tag-red{background:#3d1515;color:#f87171}
+  .key{color:var(--warn);font-weight:bold}.danger{color:var(--danger);font-weight:bold}.good{color:var(--accent3);font-weight:bold}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+  .flow-item{background:#252840;border-radius:6px;padding:4px 10px;font-size:12px}
+  .arrow{color:var(--muted)}
+  ul{padding-left:18px}li{margin-bottom:4px;font-size:13px}
+  .box{padding:12px;background:#13162a;border-radius:8px;margin-top:10px;font-size:13px;line-height:1.8}
+  .quiz-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+  .quiz-q{font-weight:bold;margin-bottom:14px;font-size:14px;line-height:1.8}
+  .quiz-year{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .options{display:grid;gap:8px}
+  .option{padding:10px 14px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:13px}
+  .option:hover{border-color:var(--accent);background:#1e2235}
+  .option.correct{border-color:var(--accent3);background:#14332a;color:#4ade80}
+  .option.wrong{border-color:var(--danger);background:#3d1515;color:var(--danger)}
+  .explanation{margin-top:14px;padding:12px;background:#13162a;border-radius:8px;font-size:13px;line-height:1.8;display:none}
+  .explanation.show{display:block}
+  .score-board{text-align:center;padding:16px;background:var(--card);border-radius:10px;margin-bottom:20px;font-size:16px}
+  .score-num{font-size:28px;color:var(--accent);font-weight:bold}
+  .reset-btn{display:block;margin:10px auto;padding:10px 24px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h1>③ 脳血管障害</h1>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">🔴 脳梗塞</div>
+  <div class="tab" onclick="switchTab(1)">🟠 脳出血・SAH</div>
+  <div class="tab" onclick="switchTab(2)">🟡 TIA・その他</div>
+  <div class="tab" onclick="switchTab(3)">📝 過去問クイズ</div>
+</div>
+
+<!-- TAB1: 脳梗塞 -->
+<div class="panel active" id="panel-0">
+  <div class="section-title">脳梗塞3病型の鑑別</div>
+  <div class="card">
+    <table>
+      <tr><th></th><th>アテローム血栓性</th><th>心原性塞栓症</th><th>ラクナ梗塞</th></tr>
+      <tr><td>好発部位</td><td>主幹動脈分岐部・MCA/ICA</td><td>MCA領域・<span class="key">皮質梗塞</span></td><td>穿通枝（内包・被殻・視床・橋）</td></tr>
+      <tr><td>大きさ</td><td>大〜中</td><td>大（楔形・皮質含む）</td><td><span class="key">15mm以下</span></td></tr>
+      <tr><td>発症様式</td><td>段階的・睡眠中〜起床時</td><td><span class="key">突然（最大発症）</span></td><td>緩徐〜段階的</td></tr>
+      <tr><td>意識障害</td><td>軽度</td><td><span class="key">あり</span></td><td>なし</td></tr>
+      <tr><td>出血性梗塞</td><td>少ない</td><td><span class="key">多い</span></td><td>なし</td></tr>
+      <tr><td>原因</td><td>大動脈・頸動脈粥状硬化<br>危険因子：HT・DM・脂質異常症・喫煙</td><td>心房細動・弁膜症<br>心筋梗塞後・感染性心内膜炎</td><td>高血圧による穿通枝病変<br>リポヒアリノーシス</td></tr>
+      <tr><td>抗血栓療法</td><td>抗血小板薬（アスピリン・クロピドグレル）</td><td><span class="key">抗凝固薬（ワルファリン・DOAC）</span></td><td>抗血小板薬</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">急性期治療</div>
+  <div class="card">
+    <h3>rt-PA（アルテプラーゼ）静注血栓溶解療法</h3>
+    <div class="grid2">
+      <div>
+        <h4 style="color:var(--accent3);margin-bottom:6px">適応基準</h4>
+        <ul>
+          <li>発症後<span class="key">4.5時間以内</span></li>
+          <li>虚血性脳卒中と診断</li>
+          <li>CTで広範な低吸収域なし</li>
+          <li>年齢制限なし（慎重投与に注意）</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:var(--danger);margin-bottom:6px">禁忌</h4>
+        <ul>
+          <li>出血性素因・抗凝固薬内服中</li>
+          <li>血圧≥185/110 mmHg（治療後も）</li>
+          <li>3ヶ月以内の脳卒中・頭部外傷</li>
+          <li>血糖<50 or >400 mg/dL</li>
+        </ul>
+      </div>
+    </div>
+    <div class="box">投与量：0.6mg/kg（最大60mg）、10%を静注、90%を1時間で静注</div>
+  </div>
+
+  <div class="card">
+    <h3>血管内治療（機械的血栓回収療法）</h3>
+    <ul>
+      <li>対象：前方循環<span class="key">発症6時間以内</span>（後方循環は24時間まで）</li>
+      <li>適応：主幹動脈閉塞（ICA・MCA M1）・NIHSS ≥6</li>
+      <li>rt-PAと併用可能（bridging therapy）</li>
+      <li>DWI-FLAIR不一致で発症時刻不明例にも拡大適応</li>
+    </ul>
+  </div>
+
+  <div class="section-title">脳梗塞症候群</div>
+  <div class="card">
+    <table>
+      <tr><th>動脈</th><th>症候</th><th>特記</th></tr>
+      <tr><td>MCA（中大脳動脈）</td><td>対側片麻痺（上肢優位）・感覚障害・同名半盲<br>優位半球：失語　劣位半球：半側空間無視</td><td>最多・楔形皮質梗塞</td></tr>
+      <tr><td>ACA（前大脳動脈）</td><td>対側片麻痺（<span class="key">下肢優位</span>）・尿失禁・把握反射</td><td>前頭葉内側面</td></tr>
+      <tr><td>PCA（後大脳動脈）</td><td><span class="key">同名半盲</span>・視床症状（半身感覚障害・視床痛）</td><td>後頭葉・視床</td></tr>
+      <tr><td>PICA（後下小脳動脈）</td><td><span class="key">Wallenberg症候群</span>：延髄外側症候群<br>患側顔面＋対側体幹の解離性感覚障害・嚥下障害・Horner</td><td>椎骨動脈閉塞でも</td></tr>
+      <tr><td>BA（脳底動脈）</td><td>意識障害・眼球運動障害・四肢麻痺<br><span class="key">locked-in症候群</span>（橋腹側）</td><td>致死的・緊急</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TAB2: 脳出血・SAH -->
+<div class="panel" id="panel-1">
+  <div class="section-title">脳出血</div>
+  <div class="card">
+    <h3>部位別出血の特徴</h3>
+    <table>
+      <tr><th>部位</th><th>頻度</th><th>特徴的症状</th><th>原因</th></tr>
+      <tr><td><span class="tag tag-red">被殻出血（最多）</span></td><td>35%</td><td>対側片麻痺・感覚障害・共同偏視（患側向き）</td><td>高血圧</td></tr>
+      <tr><td><span class="tag tag-orange">視床出血</span></td><td>25%</td><td>半身感覚障害・視床痛・<span class="key">内下方偏視</span></td><td>高血圧</td></tr>
+      <tr><td><span class="tag tag-purple">小脳出血</span></td><td>10%</td><td>突然の頭痛・嘔吐・<span class="key">失調（体幹・上肢）</span><br>眼振・片麻痺なし</td><td>高血圧・AVM</td></tr>
+      <tr><td><span class="tag tag-blue">橋出血</span></td><td>5%</td><td>四肢麻痺・眼球正中固定・<span class="key">針先様瞳孔</span><br>過高体温・意識障害（重篤）</td><td>高血圧</td></tr>
+      <tr><td>皮質下出血</td><td>15%</td><td>局所症状（部位依存）・痙攣</td><td>アミロイド血管症・AVM・腫瘍</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">くも膜下出血（SAH）</div>
+  <div class="card">
+    <h3>SAHの特徴と管理</h3>
+    <div class="flow">
+      <div class="flow-item">突然の<span class="key">「人生最悪の頭痛」</span></div>
+      <div class="arrow">→</div>
+      <div class="flow-item">CT：くも膜下腔の高吸収域</div>
+      <div class="arrow">→</div>
+      <div class="flow-item">CTが陰性でも→腰椎穿刺（キサントクロミア）</div>
+    </div>
+    <table style="margin-top:10px">
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td>原因</td><td>脳動脈瘤破裂（80〜85%）・AVM・外傷</td></tr>
+      <tr><td>好発部位</td><td>前交通動脈瘤・後交通動脈瘤・MCA分岐部</td></tr>
+      <tr><td>合併症</td><td><span class="key">再出血</span>（24h以内最多）・<span class="key">脳血管攣縮</span>（4〜14日後）・水頭症・低Na血症</td></tr>
+      <tr><td>脳血管攣縮予防</td><td><span class="key">ニカルジピン持続点滴</span>・ファスジル・十分な輸液</td></tr>
+      <tr><td>動脈瘤処置</td><td>外科的クリッピング / 血管内コイル塞栓術（early surgery）</td></tr>
+    </table>
+    <div class="box"><span class="danger">⚠</span> <strong>後交通動脈瘤</strong>が破裂する前に動眼神経麻痺（瞳孔散大・外斜視・眼瞼下垂）をきたすことがある→緊急処置</div>
+  </div>
+</div>
+
+<!-- TAB3: TIA・その他 -->
+<div class="panel" id="panel-2">
+  <div class="section-title">TIA（一過性脳虚血発作）</div>
+  <div class="card">
+    <h3>TIAの定義・リスク評価</h3>
+    <ul>
+      <li>定義：<span class="key">24時間以内（通常1時間以内）</span>に完全回復する局所神経症状</li>
+      <li>MRI拡散強調像で梗塞巣があれば脳梗塞と診断</li>
+      <li><span class="key">ABCD2スコア</span>でTIA後の脳梗塞リスク評価：<br>
+        A：年齢≥60（1）、B：血圧≥140/90（1）、C：片麻痺（2）/言語障害（1）、<br>
+        D：症状持続≥60分（2）/10〜59分（1）、D：糖尿病（1）<br>
+        スコア≥4→高リスク（48h以内の脳梗塞リスク約4〜8%）
+      </li>
+    </ul>
+    <div class="box">TIA後は<strong>直ちに抗血小板薬開始・危険因子管理</strong>→脳梗塞予防（最初の数日が最高リスク）</div>
+  </div>
+
+  <div class="section-title">脳血管奇形・その他</div>
+  <div class="card">
+    <table>
+      <tr><th>疾患</th><th>特徴</th><th>治療</th></tr>
+      <tr><td>脳動静脈奇形（AVM）</td><td>若年の脳出血・痙攣・頭痛<br>血管造影で異常血管塊（nidus）</td><td>摘出術・ガンマナイフ・血管内治療</td></tr>
+      <tr><td>海綿状血管腫</td><td>繰り返す小出血・痙攣<br>MRI T2*で<span class="key">ポップコーン様</span>（ヘモジデリン沈着）</td><td>症候性は手術</td></tr>
+      <tr><td>もやもや病</td><td>小児：TIA・脳梗塞（過換気で増悪）<br>成人：脳出血<br><span class="key">内頸動脈終末部閉塞</span>＋側副血行（霞がかった造影像）</td><td>バイパス術（EC-IC）</td></tr>
+      <tr><td>静脈洞血栓症（CVST）</td><td>頭痛・痙攣・意識障害<br>MRVで静脈洞信号消失</td><td>抗凝固療法（出血があっても）</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TAB4: クイズ -->
+<div class="panel" id="panel-3">
+  <div class="score-board">正解数：<span class="score-num" id="score">0</span> / <span id="total">0</span><button class="reset-btn" onclick="resetQuiz()">リセット</button></div>
+  <div id="quiz-container"></div>
+</div>
+
+<script>
+function switchTab(i){document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',i===j));}
+const quizData=[
+  {year:'2024年度',q:'72歳男性。心房細動で抗凝固薬を内服中。突然の最大強度の頭痛で救急搬送。CTでシルビウス裂周囲に高吸収域を認めた。次に行うべき検査は？',options:['MRI拡散強調像','脳血管造影（DSA）','腰椎穿刺','頸動脈エコー','脳波検査'],answer:1,exp:'SAH（くも膜下出血）疑いに対して、CTで確定後は脳血管造影（DSA）または3D-CTAで動脈瘤を検索する。CTが陰性でも臨床的にSAHが疑われる場合は腰椎穿刺（キサントクロミア確認）を施行するが、本例ではCTで確認済みのためDSAが次のステップ。動脈瘤確認後は早期にクリッピングまたはコイル塞栓術で再破裂を防ぐ。'},
+  {year:'2023年度',q:'65歳女性。突然の右片麻痺と失語で発症し救急搬送。発症から1時間30分。CT正常。血圧160/95 mmHg、血糖120 mg/dL。抗凝固薬内服なし。最も適切な治療は？',options:['抗血小板薬内服開始','rt-PA静注血栓溶解療法','ヘパリン持続点滴','経過観察','降圧療法のみ'],answer:1,exp:'発症4.5時間以内・CTで出血なし・血圧≤185/110・血糖正常・抗凝固薬なしと禁忌項目がなく、rt-PA（アルテプラーゼ0.6mg/kg）の適応。MCA領域の症状（対側片麻痺・優位半球の失語）から大血管閉塞も疑われ、rt-PA後に血管内治療（機械的血栓回収）も検討する。抗血小板薬のみでは急性期の再灌流が得られない。'},
+  {year:'2022年度',q:'58歳男性。突然の激しい頭痛・嘔吐・意識消失で搬送。眼底検査で硝子体出血を認めた（Terson症候群）。CT正常だったため腰椎穿刺を施行したところ、黄色調の髄液（キサントクロミア）を認めた。診断は？',options:['細菌性髄膜炎','ウイルス性髄膜炎','くも膜下出血（SAH）','脳静脈洞血栓症','高血圧性脳症'],answer:2,exp:'CT陰性SAHの典型例。突然の最大強度頭痛＋Terson症候群（眼底硝子体出血：SAHに伴う急激な頭蓋内圧上昇による）＋キサントクロミア（発症12h〜2週間で出現するビリルビンによる黄色）。CT陰性率は発症直後で高く、6〜12時間後のCT感度は98%。CT陰性でもSAHが疑われる場合は必ず腰椎穿刺を施行する。'},
+  {year:'2025年度',q:'75歳男性。高血圧既往あり。突然の頭痛・嘔吐・右手の失調で受診。MRIで右小脳半球に高信号域（T1高信号）を認め、CT では高吸収域。片麻痺はない。最も疑われる診断と緊急性は？',options:['小脳梗塞：緊急治療不要','小脳出血：緊急手術を要する場合がある','橋出血：致死的で予後不良','視床出血：保存療法が原則','被殻出血：血腫除去術が適応'],answer:1,exp:'小脳出血の典型例。突然の頭痛・嘔吐・体幹失調（片麻痺なし）がポイント。高血圧が最多原因。CTで高吸収域（新鮮血）・T1MRIで高信号。小脳出血は血腫が3cm以上・水頭症・意識障害を伴う場合に緊急手術（血腫除去）が適応となる。橋への圧迫（呼吸不全・意識障害）が進行すれば致死的で、早期の神経外科コンサルトが必須。'},
+  {year:'2024年度',q:'Wallenberg症候群（延髄外側症候群）の責任血管と特徴的な感覚障害のパターンはどれか。',options:['前大脳動脈：対側下肢の感覚障害','後下小脳動脈（PICA）：患側顔面＋対側体幹の解離性感覚障害','中大脳動脈：対側上肢優位の感覚障害','後大脳動脈：対側同名半盲','脳底動脈：四肢対称性感覚障害'],answer:1,exp:'Wallenberg症候群はPICA（後下小脳動脈）または椎骨動脈閉塞による延髄外側梗塞。特徴：患側の顔面温痛覚障害（三叉神経脊髄路）＋対側体幹・四肢の温痛覚障害（脊髄視床路）＝交叉性解離性感覚障害。加えて嚥下障害・嗄声（疑核）・Horner症候群（交感神経下行路）・小脳性失調（小脳脚）。振動覚・位置覚（後索）は保たれる。'}
+];
+let scores=0;
+function buildQuiz(){const c=document.getElementById('quiz-container');document.getElementById('total').textContent=quizData.length;c.innerHTML=quizData.map((q,qi)=>`<div class="quiz-card" id="qcard-${qi}"><div class="quiz-year">${q.year}</div><div class="quiz-q">Q${qi+1}. ${q.q}</div><div class="options">${q.options.map((o,oi)=>`<div class="option" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</div>`).join('')}</div><div class="explanation" id="exp-${qi}"><span class="good">✓ 正解：${String.fromCharCode(65+q.answer)}. ${q.options[q.answer]}</span><br><br>${q.exp}</div></div>`).join('');}
+function answer(qi,oi){const q=quizData[qi];const card=document.getElementById('qcard-'+qi);if(card.dataset.done)return;card.dataset.done='1';document.querySelectorAll(`[id^="opt-${qi}-"]`).forEach(el=>el.style.pointerEvents='none');document.getElementById(`opt-${qi}-${oi}`).classList.add(oi===q.answer?'correct':'wrong');if(oi!==q.answer)document.getElementById(`opt-${qi}-${q.answer}`).classList.add('correct');document.getElementById('exp-'+qi).classList.add('show');if(oi===q.answer){scores++;document.getElementById('score').textContent=scores;}}
+function resetQuiz(){scores=0;document.getElementById('score').textContent=0;buildQuiz();}
+buildQuiz();
+</script>
+</body>
+</html>
