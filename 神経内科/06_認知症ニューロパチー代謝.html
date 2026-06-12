@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⑥ 認知症・ニューロパチー・代謝疾患</title>
+<style>
+  :root {
+    --bg: #0f1117; --card: #1a1d27; --border: #2e3150;
+    --accent: #6c8fff; --accent2: #a78bfa; --accent3: #34d399;
+    --warn: #f59e0b; --danger: #f87171;
+    --text: #e2e8f0; --muted: #8892b0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 14px; line-height: 1.6; }
+  h1 { text-align: center; padding: 20px; font-size: 20px; color: var(--accent); border-bottom: 1px solid var(--border); }
+  .tabs { display: flex; border-bottom: 2px solid var(--border); background: var(--card); }
+  .tab { padding: 12px 20px; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; font-size: 13px; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: bold; }
+  .panel { display: none; padding: 20px; max-width: 1000px; margin: 0 auto; }
+  .panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+  .card h3 { color: var(--accent2); margin-bottom: 10px; font-size: 15px; }
+  .card h4 { color: var(--accent3); margin: 10px 0 6px; font-size: 13px; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+  th { background: #252840; color: var(--accent); padding: 8px; text-align: left; font-size: 12px; }
+  td { padding: 7px 8px; border-top: 1px solid var(--border); font-size: 13px; vertical-align: top; }
+  tr:hover td { background: #1e2235; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; margin: 2px; }
+  .tag-blue { background: #1e3a5f; color: #60a5fa; }
+  .tag-purple { background: #2d1f4e; color: #c084fc; }
+  .tag-green { background: #14332a; color: #4ade80; }
+  .tag-orange { background: #3d2a00; color: #fbbf24; }
+  .tag-red { background: #3d1515; color: #f87171; }
+  .key { color: var(--warn); font-weight: bold; }
+  .danger { color: var(--danger); font-weight: bold; }
+  .good { color: var(--accent3); font-weight: bold; }
+  .section-title { font-size: 18px; color: var(--accent); margin: 20px 0 12px; border-left: 3px solid var(--accent); padding-left: 10px; }
+  /* Quiz */
+  .quiz-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+  .quiz-q { font-weight: bold; margin-bottom: 14px; font-size: 14px; line-height: 1.8; }
+  .quiz-year { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .options { display: grid; gap: 8px; }
+  .option { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 13px; }
+  .option:hover { border-color: var(--accent); background: #1e2235; }
+  .option.correct { border-color: var(--accent3); background: #14332a; color: #4ade80; }
+  .option.wrong { border-color: var(--danger); background: #3d1515; color: var(--danger); }
+  .explanation { margin-top: 14px; padding: 12px; background: #13162a; border-radius: 8px; font-size: 13px; line-height: 1.8; display: none; }
+  .explanation.show { display: block; }
+  .score-board { text-align: center; padding: 16px; background: var(--card); border-radius: 10px; margin-bottom: 20px; font-size: 16px; }
+  .score-num { font-size: 28px; color: var(--accent); font-weight: bold; }
+  .reset-btn { display: block; margin: 10px auto; padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; }
+  .antibody-table td:first-child { color: var(--warn); font-family: monospace; }
+  .flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+  .flow-item { background: #252840; border-radius: 6px; padding: 4px 10px; font-size: 12px; }
+  .arrow { color: var(--muted); }
+  ul { padding-left: 18px; }
+  li { margin-bottom: 4px; font-size: 13px; }
+  .diff-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 10px 0; }
+  .diff-col { background: #13162a; border-radius: 8px; padding: 12px; }
+  .diff-col h4 { text-align: center; margin-bottom: 8px; }
+  @media (max-width: 600px) { .diff-grid { grid-template-columns: 1fr; } .tabs { flex-wrap: wrap; } }
+</style>
+</head>
+<body>
+<h1>⑥ 認知症・ニューロパチー・代謝疾患</h1>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">🧠 認知症</div>
+  <div class="tab" onclick="switchTab(1)">⚡ ニューロパチー</div>
+  <div class="tab" onclick="switchTab(2)">🔬 代謝疾患</div>
+  <div class="tab" onclick="switchTab(3)">📝 過去問クイズ</div>
+</div>
+
+<!-- ===== TAB 1: 認知症 ===== -->
+<div class="panel active" id="panel-0">
+  <div class="section-title">主要4疾患の鑑別</div>
+  <div class="card">
+    <h3>認知症の鑑別マトリックス</h3>
+    <table>
+      <tr>
+        <th>疾患</th><th>中核症状</th><th>特徴的症状</th><th>画像所見</th><th>補助診断</th>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">Alzheimer</span></td>
+        <td>近時記憶↓<br>エピソード記憶↓</td>
+        <td><span class="key">物盗られ妄想</span><br>取り繕い反応</td>
+        <td>海馬・側頭頭頂葉萎縮<br>SPECT: 側頭頭頂血流↓</td>
+        <td>髄液 <span class="key">Aβ42↓</span><br>p-tau↑<br>ApoE ε4リスク</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-purple">Lewy小体</span></td>
+        <td>認知機能の<span class="key">変動</span></td>
+        <td><span class="key">幻視（具体的・鮮明）</span><br>パーキンソニズム</td>
+        <td>SPECT: <span class="key">後頭葉血流↓</span><br>DaT scan: 線条体取込↓</td>
+        <td>抗精神病薬<span class="danger">過感受性→禁忌</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">FTD（bvFTD）</span></td>
+        <td>前頭葉症状<br><span class="key">脱抑制</span>・人格変化</td>
+        <td>意味記憶障害<br>（エピソード記憶は保持）</td>
+        <td>前頭側頭葉萎縮<br>SPECT: 前頭葉血流↓</td>
+        <td>TDP-43/タウ蓄積</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">CJD</span></td>
+        <td><span class="key">急速進行性</span>認知症<br>ミオクローヌス</td>
+        <td>錐体路・錐体外路症状<br>小脳症状</td>
+        <td><span class="key">DWI</span>: 皮質・基底核高信号</td>
+        <td>脳波: <span class="key">PSD</span><br>髄液: 14-3-3蛋白<br>RT-QuIC</td>
+      </tr>
+    </table>
+    <div style="margin-top:10px; padding: 10px; background:#13162a; border-radius:8px;">
+      <span class="danger">⚠ 重要鑑別：</span>
+      <strong>PSD</strong>（周期性同期性放電）→ <span class="key">CJD</span>　／
+      <strong>PLEDs</strong>（周期性一側性てんかん様放電）→ <span class="key">単純ヘルペス脳炎</span>
+    </div>
+  </div>
+
+  <div class="section-title">Wilson病</div>
+  <div class="card">
+    <h3>Wilson病（肝レンズ核変性症）</h3>
+    <div class="flow">
+      <div class="flow-item">ATP7B変異（AR）</div><div class="arrow">→</div>
+      <div class="flow-item">銅排泄障害</div><div class="arrow">→</div>
+      <div class="flow-item">肝・基底核・角膜に沈着</div>
+    </div>
+    <table>
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td>神経症状</td><td>パーキンソニズム・ジストニア・企図振戦・構音障害・精神症状</td></tr>
+      <tr><td>MRI</td><td><span class="key">両側基底核（被殻・尾状核）+ 視床</span>のT2高信号（対称性）</td></tr>
+      <tr><td>眼科所見</td><td><span class="key">KF輪</span>（角膜輪部の金褐色沈着・スリットランプ）</td></tr>
+      <tr><td>検査</td><td>血清セルロプラスミン↓・24時間尿銅↑</td></tr>
+      <tr><td>治療</td><td><span class="key">D-ペニシラミン</span>（銅キレート薬・第一選択）<br>トリエンチン（不耐時）・亜鉛（銅吸収阻害）</td></tr>
+      <tr><td>発症年齢</td><td>10〜30歳代・早期治療で神経症状改善可能</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">失語・失行・失認の鑑別</div>
+  <div class="card">
+    <h3>高次脳機能障害の鑑別</h3>
+    <div class="diff-grid">
+      <div class="diff-col">
+        <h4 style="color:#60a5fa">失語</h4>
+        <ul>
+          <li>言語野（ブローカ・ウェルニッケ）病変</li>
+          <li>発話誤り（錯語）</li>
+          <li>聴覚的理解障害</li>
+          <li>復唱障害</li>
+        </ul>
+      </div>
+      <div class="diff-col">
+        <h4 style="color:#c084fc">失行</h4>
+        <ul>
+          <li>運動機能は保持</li>
+          <li>物品誤使用</li>
+          <li>観念失行：道具の使い方不明</li>
+          <li>観念運動失行：模倣できない</li>
+        </ul>
+      </div>
+      <div class="diff-col">
+        <h4 style="color:#4ade80">失認</h4>
+        <ul>
+          <li>Modality specific</li>
+          <li>感覚機能は保持</li>
+          <li>視覚失認・聴覚失認</li>
+          <li>病態失認（アノソグノジア）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 2: ニューロパチー ===== -->
+<div class="panel" id="panel-1">
+  <div class="section-title">電気生理の基本</div>
+  <div class="card">
+    <h3>軸索障害 vs 脱髄 vs 伝導ブロック</h3>
+    <table>
+      <tr><th>所見</th><th>軸索障害</th><th>脱髄</th><th>伝導ブロック</th></tr>
+      <tr><td>伝導速度</td><td>正常〜軽度低下</td><td><span class="key">著明低下</span></td><td>正常</td></tr>
+      <tr><td>振幅（CMAP）</td><td><span class="key">低下</span></td><td>保持（または低下）</td><td><span class="key">低下</span></td></tr>
+      <tr><td>時間的分散</td><td>なし</td><td><span class="key">あり</span></td><td>なし</td></tr>
+      <tr><td>筋萎縮</td><td>あり</td><td>軽度</td><td><span class="key">なし（特徴的）</span></td></tr>
+      <tr><td>代表疾患</td><td>AMAN・糖尿病・CMT2</td><td>AIDP・CIDP・CMT1</td><td>MMN・HNPP</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">GBS・Fisher症候群・CIDP</div>
+  <div class="card">
+    <h3>GBS（ギラン・バレー症候群）</h3>
+    <table>
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td>誘因</td><td>感染（カンピロバクター・CMV等）の<span class="key">1〜3週後</span></td></tr>
+      <tr><td>診断基準</td><td>①急性（4週以内）②両側性弛緩性麻痺③深部反射消失④<span class="key">髄液蛋白細胞解離</span></td></tr>
+      <tr><td>病型</td><td>AIDP（脱髄・最多）/ <span class="key">AMAN</span>（軸索・GD1a/GM1 IgG）/ Fisher症候群</td></tr>
+      <tr><td>治療</td><td><span class="key">IVIg</span>（0.4g/kg×5日）または血漿交換（同等の有効性）</td></tr>
+      <tr><td>注意</td><td>20〜30%が人工呼吸器必要・ステロイド<span class="danger">無効</span></td></tr>
+    </table>
+    <div style="margin-top:12px">
+      <h4>Fisher症候群三徴</h4>
+      <div class="flow" style="margin-top:8px">
+        <div class="flow-item">👁 眼球運動麻痺</div>
+        <div class="flow-item">🚶 失調（小脳性）</div>
+        <div class="flow-item">🔨 腱反射消失</div>
+        <div class="arrow">→</div>
+        <div class="flow-item" style="background:#2d1f4e; color:#c084fc"><span class="key">抗GQ1b IgG抗体</span>（90%以上）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>抗ガングリオシド抗体 まとめ</h3>
+    <table class="antibody-table">
+      <tr><th>抗体</th><th>病型</th><th>特記事項</th></tr>
+      <tr><td>抗GQ1b IgG</td><td>Fisher症候群・Bickerstaff脳幹脳炎</td><td>90%以上陽性・眼球運動神経に分布</td></tr>
+      <tr><td>抗GD1a/GM1 IgG</td><td>AMAN</td><td>カンピロバクター後・ランヴィエ絞輪</td></tr>
+      <tr><td>抗GM1 IgM</td><td>多巣性運動ニューロパチー（MMN）</td><td>伝導ブロック・上肢優位</td></tr>
+      <tr><td>抗GT1a IgG</td><td>口咽頭型GBS</td><td>球麻痺優位</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>CIDP vs GBS</h3>
+    <table>
+      <tr><th></th><th>GBS</th><th>CIDP</th></tr>
+      <tr><td>経過</td><td>急性（4週以内）</td><td><span class="key">慢性（&gt;2ヶ月）</span></td></tr>
+      <tr><td>病理</td><td>炎症性脱髄</td><td>脱髄＋<span class="key">onion bulb</span></td></tr>
+      <tr><td>ステロイド</td><td><span class="danger">無効</span></td><td><span class="good">有効</span></td></tr>
+      <tr><td>治療</td><td>IVIg / 血漿交換</td><td>IVIg / ステロイド / 血液浄化 / 免疫抑制剤</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">遺伝性ニューロパチー</div>
+  <div class="card">
+    <h3>CMT（Charcot-Marie-Tooth病）</h3>
+    <table>
+      <tr><th>型</th><th>遺伝</th><th>電気生理</th><th>原因遺伝子</th><th>特徴</th></tr>
+      <tr><td>CMT1A（最多）</td><td>AD</td><td>脱髄</td><td><span class="key">PMP22重複</span>（17p12）</td><td>onion bulb・逆シャンペンボトル型・凹足・大耳介神経肥厚</td></tr>
+      <tr><td>CMT1B</td><td>AD</td><td>脱髄</td><td>MPZ（P0）</td><td>重症例あり</td></tr>
+      <tr><td>CMT2</td><td>AD</td><td>軸索</td><td>KIF1B・MFN2等</td><td>伝導速度保持・振幅低下</td></tr>
+      <tr><td>CMTX</td><td>X連鎖優性</td><td>中間型</td><td><span class="key">Connexin32（GJB1）</span></td><td>男性重症・女性軽症</td></tr>
+      <tr><td>CMT3（DSS）</td><td>AR/AD</td><td>脱髄（重症）</td><td>PMP22点変異等</td><td>Dejerine-Sottas・乳児発症</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>FAP（TTR型家族性アミロイドニューロパチー）</h3>
+    <table>
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td>遺伝</td><td>常染色体優性（AD）・Val30Met変異が最多</td></tr>
+      <tr><td>疫学</td><td><span class="key">長野・熊本</span>に集積</td></tr>
+      <tr><td>病態</td><td>変異TTR→アミロイド線維→末梢神経・心臓・腎臓・眼への沈着</td></tr>
+      <tr><td>特徴</td><td><span class="key">小径線維障害が先行</span>→解離性温痛覚障害（下肢から上行）＋<span class="key">高度自律神経症状</span></td></tr>
+      <tr><td>確認法</td><td><span class="key">コンゴレッド染色</span>→偏光で緑色蛍光</td></tr>
+      <tr><td>治療</td><td>肝移植 / TTR四量体安定化薬（タファミジス）/ siRNA（パティシラン）</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">その他のニューロパチー</div>
+  <div class="card">
+    <h3>POEMS症候群</h3>
+    <div class="flow" style="flex-wrap:wrap; gap:6px; margin-bottom:10px">
+      <div class="flow-item"><strong>P</strong>olyneuropathy 多発神経炎</div>
+      <div class="flow-item"><strong>O</strong>rganomegaly 臓器腫大</div>
+      <div class="flow-item"><strong>E</strong>ndocrinopathy 内分泌障害</div>
+      <div class="flow-item"><strong>M</strong>-protein M蛋白</div>
+      <div class="flow-item"><strong>S</strong>kin changes 皮膚変化</div>
+    </div>
+    <p>追加所見：<span class="key">VEGF高値</span>・浮腫（胸腹水）・血小板増多・骨硬化性骨髄腫</p>
+    <p style="margin-top:6px">皮膚：剛毛・血管腫・色素沈着　／　治療：放射線療法・自家造血幹細胞移植</p>
+  </div>
+
+  <div class="card">
+    <h3>その他のニューロパチー比較</h3>
+    <table>
+      <tr><th>疾患</th><th>電気生理</th><th>特徴</th></tr>
+      <tr><td>糖尿病性ニューロパチー</td><td>遠位対称性・軸索優位</td><td>最多型：遠位対称性多発神経炎<br>単神経炎：<span class="key">動眼神経麻痺（瞳孔温存）</span></td></tr>
+      <tr><td>血管炎性ニューロパチー</td><td><span class="key">多発単ニューロパチー</span><br>左右非対称・振幅低下</td><td>ANCA/RA/抗SSA<br>腓腹神経+短腓骨筋<span class="key">同時生検</span></td></tr>
+      <tr><td>アルコール性ニューロパチー</td><td>軸索障害</td><td><span class="key">Dying back pattern</span><br>足裏疼痛</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== TAB 3: 代謝疾患 ===== -->
+<div class="panel" id="panel-2">
+  <div class="section-title">ライソゾーム蓄積症</div>
+  <div class="card">
+    <h3>Gaucher病</h3>
+    <div class="flow">
+      <div class="flow-item">GBA1遺伝子変異（AR）</div><div class="arrow">→</div>
+      <div class="flow-item">グルコセレブロシダーゼ欠損</div><div class="arrow">→</div>
+      <div class="flow-item">グルコセレブロシドがマクロファージに蓄積</div>
+    </div>
+    <table style="margin-top:10px">
+      <tr><th>型</th><th>神経症状</th><th>内科症状</th><th>発症</th></tr>
+      <tr><td><span class="tag tag-green">1型（非神経型）</span></td><td>なし</td><td>肝脾腫・貧血・骨病変<br>Erlenmeyerフラスコ変形</td><td>成人</td></tr>
+      <tr><td><span class="tag tag-red">2型（急性神経型）</span></td><td>重篤な脳幹障害</td><td>肝脾腫</td><td>乳児（2歳までに死亡）</td></tr>
+      <tr><td><span class="tag tag-orange">3型（亜急性神経型）</span></td><td><span class="key">核上性眼球運動障害</span>・ミオクローヌス</td><td>肝脾腫・骨病変</td><td>小児〜成人</td></tr>
+    </table>
+    <div style="margin-top:10px; padding:10px; background:#13162a; border-radius:8px">
+      <p>治療：<span class="key">ERT（イミグルセラーゼ 60U/kg 隔週）</span>→ 1型・3型に有効</p>
+      <p style="margin-top:4px"><span class="danger">⚠</span> ERTは血液脳関門（BBB）通過不可→中枢神経症状には無効</p>
+      <p style="margin-top:4px"><span class="warn">GBA1キャリア→パーキンソン病リスク OR=28</span></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>その他のライソゾーム蓄積症</h3>
+    <table>
+      <tr><th>疾患</th><th>欠損酵素</th><th>蓄積物質</th><th>遺伝</th><th>特徴</th></tr>
+      <tr><td>Tay-Sachs病</td><td>Hex A（β-ヘキソサミニダーゼA）</td><td>GM2ガングリオシド</td><td>AR</td><td><span class="key">Cherry-red spots</span>・乳児発症・ERT なし</td></tr>
+      <tr><td>Fabry病</td><td>α-ガラクトシダーゼA</td><td>Gb3（グロボトリアオシルセラミド）</td><td><span class="key">X連鎖</span></td><td>Angiokeratoma・若年脳梗塞・ERT適応</td></tr>
+      <tr><td>Niemann-Pick C型</td><td>NPC1/NPC2（脂質輸送）</td><td>コレステロール</td><td>AR</td><td><span class="key">核上性眼球運動障害</span>・ミゲルスタット</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>ERT（酵素補充療法）の原則</h3>
+    <div style="padding:12px; background:#13162a; border-radius:8px">
+      <p><span class="danger">【重要】</span> ERTは<strong>血液脳関門（BBB）を通過できない</strong></p>
+      <p>→ <span class="key">中枢神経症状（認知症・運動障害等）には無効</span></p>
+      <p style="margin-top:8px">例外：ムコ多糖症II型（Hunter症候群）→ <span class="good">脳室内投与（世界初承認）</span>が開発された</p>
+    </div>
+  </div>
+
+  <div class="section-title">副腎白質ジストロフィー（ALD）</div>
+  <div class="card">
+    <h3>ALD（X連鎖性副腎白質ジストロフィー）</h3>
+    <div class="flow">
+      <div class="flow-item">ABCD1遺伝子（Xq28）変異・X連鎖</div><div class="arrow">→</div>
+      <div class="flow-item">ALDP（ペルオキシソーム膜輸送蛋白）欠損</div><div class="arrow">→</div>
+      <div class="flow-item">VLCFAs（C24:0・C26:0）蓄積</div>
+    </div>
+    <table style="margin-top:10px">
+      <tr><th>病型</th><th>発症</th><th>特徴</th><th>経過</th></tr>
+      <tr><td><span class="tag tag-red">小児大脳型</span></td><td>3〜10歳</td><td>急速進行・認知・行動・視力障害</td><td>最重症・数年で植物状態</td></tr>
+      <tr><td><span class="tag tag-orange">AMN（副腎脊髄ニューロパチー）</span></td><td>思春期〜成人</td><td>下肢痙性対麻痺・感覚障害</td><td>半数が10年後に大脳型へ</td></tr>
+      <tr><td><span class="tag tag-purple">小脳脳幹型</span></td><td>成人</td><td>失調・脳幹症状</td><td>半数が2年後に大脳型へ</td></tr>
+      <tr><td><span class="tag tag-blue">アジソン単独型</span></td><td>任意</td><td>副腎不全のみ</td><td>神経症状なし</td></tr>
+    </table>
+    <div style="margin-top:12px">
+      <h4>MRI所見</h4>
+      <p><span class="key">側頭後頭葉から前方への対称性白質病変</span>（FLAIR高信号）・Gd造影で活動性部位に増強効果・Loes scoreで重症度評価</p>
+    </div>
+    <div style="margin-top:12px">
+      <h4>治療</h4>
+      <table>
+        <tr><th>治療法</th><th>対象</th><th>効果</th></tr>
+        <tr><td><span class="key">早期HSCT（造血幹細胞移植）</span></td><td>小児大脳型早期・成人大脳型早期</td><td>進行を停止可能（進行期では効果低）</td></tr>
+        <tr><td>遺伝子治療（Skysona）</td><td>小児大脳型早期</td><td>elivaldogene autotemcel・FDA承認<br>ABCd1をHIVベクターで造血幹細胞に導入</td></tr>
+        <tr><td>Lorenzo's oil</td><td>無症状期</td><td>VLCFA低下→進行予防（限定的）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-title">ビタミン欠乏症</div>
+  <div class="card">
+    <h3>ビタミン欠乏症まとめ</h3>
+    <table>
+      <tr><th>ビタミン</th><th>疾患</th><th>神経症状</th><th>特記事項</th></tr>
+      <tr>
+        <td><span class="tag tag-orange">B1（チアミン）</span></td>
+        <td><span class="key">Wernicke脳症</span></td>
+        <td>眼球運動麻痺・<span class="key">失調</span>・意識障害（三徴）</td>
+        <td>MRI: 第3/4脳室・中脳水道・視床T2高信号<br>慢性化→Korsakoff症候群（健忘・作話）</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">B12（コバラミン）</span></td>
+        <td><span class="key">亜急性連合性脊髄変性症</span></td>
+        <td>後索（振動覚・位置覚↓）＋<span class="key">側索（痙性）</span></td>
+        <td>巨赤芽球性貧血・悪性貧血（内因子欠乏）</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">ニコチン酸（B3）</span></td>
+        <td><span class="key">Pellagra</span></td>
+        <td>認知症（Dementia）</td>
+        <td><span class="key">3D</span>：Dermatitis（皮膚炎）・Diarrhea（下痢）・Dementia</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-purple">D</span></td>
+        <td>低Ca血症</td>
+        <td><span class="key">テタニー</span>（筋痙攣・Trousseau・Chvostek）</td>
+        <td>副甲状腺機能低下との鑑別</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">E（トコフェロール）</span></td>
+        <td>ビタミンE欠乏症</td>
+        <td>錐体外路症状・脊髄小脳変性症様</td>
+        <td>消去法で選択されることが多い</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== TAB 4: 過去問クイズ ===== -->
+<div class="panel" id="panel-3">
+  <div class="score-board">
+    正解数：<span class="score-num" id="score">0</span> / <span id="total">0</span>
+    <button class="reset-btn" onclick="resetQuiz()">リセット</button>
+  </div>
+  <div id="quiz-container"></div>
+</div>
+
+<script>
+function switchTab(i) {
+  document.querySelectorAll('.tab').forEach((t,j) => t.classList.toggle('active', i===j));
+  document.querySelectorAll('.panel').forEach((p,j) => p.classList.toggle('active', i===j));
+}
+
+const quizData = [
+  {
+    year: '2024年度',
+    q: '85歳女性。認知機能低下で家族に連れられて受診した。時間帯によって認知機能が明確に変動し、夕方になると混乱が著しくなる。また、存在しない人物が部屋にいると繰り返し訴える（幻視）。歩行はやや前傾姿勢でゆっくりしている。この患者の診断として最も適切なものはどれか。',
+    options: ['アルツハイマー型認知症', 'レビー小体型認知症', '前頭側頭型認知症', 'クロイツフェルト・ヤコブ病', 'ビンスワンガー病'],
+    answer: 1,
+    exp: 'レビー小体型認知症の三徴：①認知機能の変動（時間帯による明確な変動）②幻視（具体的・鮮明：人物・動物）③パーキンソニズム（前傾姿勢・小刻み歩行）。SPECT では後頭葉血流低下が特徴。抗精神病薬（ハロペリドール等）は過感受性反応を起こすため禁忌。アルツハイマー型は物盗られ妄想・近時記憶障害が主。FTDは脱抑制・人格変化が前景。'
+  },
+  {
+    year: '2023年度',
+    q: '70歳男性。急速に進行する認知機能低下と四肢のミオクローヌスが出現し1ヶ月で自立歩行不能となった。脳波検査で1-2Hzの周期性同期性放電（PSD）を認めた。最も疑われる疾患はどれか。',
+    options: ['アルツハイマー型認知症', 'レビー小体型認知症', '単純ヘルペス脳炎', 'クロイツフェルト・ヤコブ病（CJD）', 'Niemann-Pick C型'],
+    answer: 3,
+    exp: 'CJDの特徴：急速進行性認知症＋ミオクローヌス＋脳波PSD（周期性同期性放電）。DWI（拡散強調MRI）で大脳皮質・基底核の高信号が早期から検出される。髄液14-3-3蛋白陽性・RT-QuIC陽性。PLEDs（周期性一側性てんかん様放電）は単純ヘルペス脳炎に特徴的であり、CJDのPSDとの重要な鑑別点。単純ヘルペス脳炎は発熱・側頭葉病変・抗HSV抗体で鑑別。'
+  },
+  {
+    year: '2024年度',
+    q: '25歳男性。発熱性胃腸炎（カンピロバクター感染）の2週間後から両下肢の脱力が出現し急速に上行した。両側深部反射は消失。髄液検査で蛋白480mg/dL・細胞数2/μL。治療として最も適切なものはどれか。',
+    options: ['副腎皮質ステロイド静注', '免疫グロブリン大量静注（IVIg）', 'アシクロビル静注', 'メトトレキサート', 'ドネペジル'],
+    answer: 1,
+    exp: 'GBSの典型例。感染1〜3週後・上行性弛緩性麻痺・深部反射消失・髄液蛋白細胞解離。治療はIVIg（0.4g/kg×5日）または血漿交換。ステロイドはGBSに無効（重要）。カンピロバクター感染後はGM1/GD1a IgG抗体陽性のAMAN型が多い。呼吸筋麻痺（20〜30%）に注意。アシクロビルはヘルペス脳炎向け。'
+  },
+  {
+    year: '2022年度',
+    q: '18歳男性。眼球運動麻痺（外眼筋麻痺）・小脳性失調・両側腱反射消失の三徴を呈して入院。感染の1週間後から発症。最も陽性率の高い抗体はどれか。',
+    options: ['抗GM1 IgG抗体', '抗GD1a IgG抗体', '抗GQ1b IgG抗体', '抗GT1a IgG抗体', '抗AChR抗体'],
+    answer: 2,
+    exp: 'Fisher症候群の三徴（眼球運動麻痺・失調・腱反射消失）に対して抗GQ1b IgG抗体が90%以上で陽性。GQ1bは眼球運動神経（動眼・滑車・外転）・小脳・後根神経節に高発現するガングリオシドで、分子擬態により自己抗体が産生される。BickerSTaff脳幹脳炎（意識障害＋）も同抗体陽性でFisher症候群と連続スペクトラムを形成する。'
+  },
+  {
+    year: '2023年度',
+    q: '45歳男性。進行性の下肢痙性対麻痺と感覚障害で受診。幼少期から疲れやすく、現在副腎皮質機能不全の診断で内服加療中。MRIで後頭葉〜頭頂葉の対称性白質病変を認める。診断はどれか。',
+    options: ['多発性硬化症', '副腎白質ジストロフィー（ALD）', 'CADASIL', 'Krabbe病', 'Alexander病'],
+    answer: 1,
+    exp: 'X連鎖性ALDの典型例。ABCD1遺伝子変異→ALDP欠損→VLCFAs蓄積。成人型（AMN）：思春期〜成人発症・下肢痙性対麻痺・副腎不全合併。MRI：後頭葉からの対称性白質病変（FLAIR高信号）・Gd増強あり（活動性）。早期にHSCT（造血幹細胞移植）で進行停止可能。遺伝子治療（Skysona/elivaldogene autotemcel）もFDA承認済。'
+  },
+  {
+    year: '2024年度',
+    q: 'Gaucher病3型に特徴的な神経症状はどれか。',
+    options: ['Cherry-red spots', '核上性眼球運動障害', '末梢神経障害（温痛覚解離）', '急速進行性認知症', '小脳失調'],
+    answer: 1,
+    exp: 'Gaucher病3型（亜急性神経型）の特徴は核上性眼球運動障害（特に水平性眼球運動の開始遅延）とミオクローヌス。1型は非神経型（肝脾腫・骨病変のみ）。2型は乳児期の急性神経型で重篤な脳幹障害・2歳までに死亡。Cherry-red spotsはTay-Sachs病（Hex A欠損）。末梢神経障害（温痛覚解離）はFAP（TTR型）。治療はERT（イミグルセラーゼ60U/kg隔週）だがBBBを越えないため中枢症状への効果は限定的。'
+  },
+  {
+    year: '2025年度',
+    q: '60歳女性。アルコール多飲歴あり。急に眼球運動障害・体幹失調・意識変容が出現。MRIで第3脳室・中脳水道周囲・視床に対称性T2高信号を認めた。最も可能性の高い診断と治療薬はどれか。',
+    options: ['CJD → プリオン除去', 'Wernicke脳症 → ビタミンB1（チアミン）静注', '単純ヘルペス脳炎 → アシクロビル静注', '亜急性連合性脊髄変性症 → ビタミンB12筋注', 'Pellagra → ニコチン酸補充'],
+    answer: 1,
+    exp: 'Wernicke脳症の典型例。三徴：眼球運動麻痺（外直筋麻痺・眼振）・小脳性失調・意識障害。MRIでの第3/4脳室周囲・中脳水道・視床の対称性T2/FLAIR高信号が特徴的。アルコール多飲・栄養不良が誘因。治療：ビタミンB1（チアミン）静注（グルコース投与前に必ず投与）。慢性化するとKorsakoff症候群（健忘・作話・眼球運動障害）に移行。'
+  },
+  {
+    year: '2022年度',
+    q: '20歳男性。肝機能障害で精査中、構音障害・歩行時のバランス不良も出現。スリットランプ検査で角膜輪部に金褐色の沈着を認めた。血清セルロプラスミン低値。最も適切な治療は？',
+    options: ['アシクロビル', 'D-ペニシラミン', 'イミグルセラーゼ', 'タファミジス', 'コルチコステロイド'],
+    answer: 1,
+    exp: 'Wilson病（肝レンズ核変性症）。ATP7B遺伝子変異（AR）→銅輸送障害→肝・基底核・角膜に沈着。KF輪（Kayser-Fleischer輪）がスリットランプで確認される。血清セルロプラスミン低下・24時間尿銅増加・MRIで両側基底核T2高信号。治療第一選択はD-ペニシラミン（銅キレート薬）。イミグルセラーゼはGaucher病のERT。タファミジスはFAP（TTR型）のTTR安定化薬。'
+  },
+  {
+    year: '2023年度',
+    q: 'CMT1A型に最も多く認められる遺伝子異常はどれか。',
+    options: ['MPZ（P0）点変異', 'Connexin32（GJB1）変異', 'PMP22遺伝子重複（17p12）', 'KIF1B変異', 'GDAP1変異'],
+    answer: 2,
+    exp: 'CMT1Aは最も頻度の高いCMT型。17番染色体短腕（17p12）のPMP22遺伝子領域の1.5Mb重複が原因（70〜80%）。PMP22過剰発現→シュワン細胞機能不全→脱髄・onion bulb形成。臨床：幼少期発症・逆シャンペンボトル型下腿萎縮・凹足・ハンマー趾・大耳介神経触知可能。MPZ（P0）変異はCMT1B。Connexin32変異はCMTX（X連鎖）。KIF1B変異はCMT2A型。'
+  },
+  {
+    year: '2025年度',
+    q: '後索障害（振動覚・位置覚低下）と側索障害（痙性）が合併する疾患で、巨赤芽球性貧血も伴う場合に最初に疑うべき原因は？',
+    options: ['ビタミンB1欠乏', 'ビタミンB12欠乏', 'ビタミンD欠乏', 'ビタミンE欠乏', 'ニコチン酸欠乏'],
+    answer: 1,
+    exp: '亜急性連合性脊髄変性症はビタミンB12（コバラミン）欠乏による後索＋側索の障害。後索：振動覚・位置覚低下・感覚性失調。側索：痙性・腱反射亢進→Babinski陽性。末梢神経障害も合併しうる。巨赤芽球性貧血（MCV↑・葉酸との鑑別）・悪性貧血（内因子抗体・壁細胞抗体）。B1欠乏はWernicke脳症（眼球運動・失調・意識）。B12はシアノコバラミン筋注で治療。'
+  }
+];
+
+let scores = 0;
+let answered = 0;
+
+function buildQuiz() {
+  const c = document.getElementById('quiz-container');
+  document.getElementById('total').textContent = quizData.length;
+  c.innerHTML = quizData.map((q, qi) => `
+    <div class="quiz-card" id="qcard-${qi}">
+      <div class="quiz-year">${q.year}</div>
+      <div class="quiz-q">Q${qi+1}. ${q.q}</div>
+      <div class="options">
+        ${q.options.map((o,oi) => `<div class="option" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">
+          ${String.fromCharCode(65+oi)}. ${o}
+        </div>`).join('')}
+      </div>
+      <div class="explanation" id="exp-${qi}">
+        <span class="good">✓ 正解：${String.fromCharCode(65+q.answer)}. ${q.options[q.answer]}</span><br><br>${q.exp}
+      </div>
+    </div>
+  `).join('');
+}
+
+function answer(qi, oi) {
+  const q = quizData[qi];
+  const card = document.getElementById('qcard-'+qi);
+  if (card.dataset.done) return;
+  card.dataset.done = '1';
+  answered++;
+  document.querySelectorAll(`[id^="opt-${qi}-"]`).forEach(el => el.style.pointerEvents='none');
+  const opt = document.getElementById(`opt-${qi}-${oi}`);
+  const correctOpt = document.getElementById(`opt-${qi}-${q.answer}`);
+  if (oi === q.answer) {
+    opt.classList.add('correct');
+    scores++;
+  } else {
+    opt.classList.add('wrong');
+    correctOpt.classList.add('correct');
+  }
+  document.getElementById('exp-'+qi).classList.add('show');
+  document.getElementById('score').textContent = scores;
+}
+
+function resetQuiz() {
+  scores = 0; answered = 0;
+  document.getElementById('score').textContent = 0;
+  buildQuiz();
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
