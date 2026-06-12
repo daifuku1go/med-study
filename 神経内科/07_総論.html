@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⑦ 総論</title>
+<style>
+  :root{--bg:#0f1117;--card:#1a1d27;--border:#2e3150;--accent:#6c8fff;--accent2:#a78bfa;--accent3:#34d399;--warn:#f59e0b;--danger:#f87171;--text:#e2e8f0;--muted:#8892b0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Gothic',sans-serif;font-size:14px;line-height:1.6}
+  h1{text-align:center;padding:20px;font-size:20px;color:var(--accent);border-bottom:1px solid var(--border)}
+  .tabs{display:flex;border-bottom:2px solid var(--border);background:var(--card);flex-wrap:wrap}
+  .tab{padding:12px 18px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-size:13px}
+  .tab:hover{color:var(--text)}.tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:bold}
+  .panel{display:none;padding:20px;max-width:1000px;margin:0 auto}.panel.active{display:block}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+  .card h3{color:var(--accent2);margin-bottom:10px;font-size:15px}
+  .section-title{font-size:17px;color:var(--accent);margin:20px 0 12px;border-left:3px solid var(--accent);padding-left:10px}
+  table{width:100%;border-collapse:collapse;margin:10px 0}
+  th{background:#252840;color:var(--accent);padding:8px;text-align:left;font-size:12px}
+  td{padding:7px 8px;border-top:1px solid var(--border);font-size:13px;vertical-align:top}
+  tr:hover td{background:#1e2235}
+  .tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;margin:2px}
+  .tag-blue{background:#1e3a5f;color:#60a5fa}.tag-purple{background:#2d1f4e;color:#c084fc}.tag-green{background:#14332a;color:#4ade80}.tag-orange{background:#3d2a00;color:#fbbf24}.tag-red{background:#3d1515;color:#f87171}
+  .key{color:var(--warn);font-weight:bold}.danger{color:var(--danger);font-weight:bold}.good{color:var(--accent3);font-weight:bold}
+  ul{padding-left:18px}li{margin-bottom:4px;font-size:13px}
+  .box{padding:12px;background:#13162a;border-radius:8px;margin-top:10px;font-size:13px;line-height:1.8}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+  .flow-item{background:#252840;border-radius:6px;padding:4px 10px;font-size:12px}
+  .arrow{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+  .col{background:#13162a;border-radius:8px;padding:12px}
+  .col h4{margin-bottom:8px;font-size:13px}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+  .quiz-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+  .quiz-q{font-weight:bold;margin-bottom:14px;font-size:14px;line-height:1.8}
+  .quiz-year{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .options{display:grid;gap:8px}
+  .option{padding:10px 14px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:13px}
+  .option:hover{border-color:var(--accent);background:#1e2235}
+  .option.correct{border-color:var(--accent3);background:#14332a;color:#4ade80}
+  .option.wrong{border-color:var(--danger);background:#3d1515;color:var(--danger)}
+  .explanation{margin-top:14px;padding:12px;background:#13162a;border-radius:8px;font-size:13px;line-height:1.8;display:none}
+  .explanation.show{display:block}
+  .score-board{text-align:center;padding:16px;background:var(--card);border-radius:10px;margin-bottom:20px;font-size:16px}
+  .score-num{font-size:28px;color:var(--accent);font-weight:bold}
+  .reset-btn{display:block;margin:10px auto;padding:10px 24px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px}
+</style>
+</head>
+<body>
+<h1>⑦ 神経内科 総論</h1>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">🧭 局在診断</div>
+  <div class="tab" onclick="switchTab(1)">🔬 神経診察</div>
+  <div class="tab" onclick="switchTab(2)">📊 検査・画像</div>
+  <div class="tab" onclick="switchTab(3)">📝 過去問クイズ</div>
+</div>
+
+<!-- TAB1: 局在診断 -->
+<div class="panel active" id="panel-0">
+  <div class="section-title">上位・下位運動ニューロンの鑑別</div>
+  <div class="card">
+    <div class="grid2">
+      <div class="col">
+        <h4 style="color:#60a5fa">上位運動ニューロン（UMN）障害<br><small>大脳皮質〜脊髄前角細胞まで</small></h4>
+        <ul>
+          <li>腱反射 <span class="key">亢進</span></li>
+          <li>筋緊張 <span class="key">亢進（痙性）</span></li>
+          <li>Babinski徴候 <span class="key">陽性</span></li>
+          <li>筋萎縮：遅発性・廃用性</li>
+          <li>筋線維束攣縮：なし</li>
+          <li>代表：脳卒中・MS・ALS（上位成分）</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4 style="color:#f87171">下位運動ニューロン（LMN）障害<br><small>脊髄前角細胞〜末梢神経</small></h4>
+        <ul>
+          <li>腱反射 <span class="key">低下〜消失</span></li>
+          <li>筋緊張 <span class="key">低下（弛緩性）</span></li>
+          <li>Babinski徴候：陰性</li>
+          <li>筋萎縮：<span class="key">早期・高度</span></li>
+          <li>筋線維束攣縮：<span class="key">あり</span></li>
+          <li>代表：GBS・ALS（下位成分）・CMT</li>
+        </ul>
+      </div>
+    </div>
+    <div class="box"><span class="key">ALS</span>のみ上位＋下位MN障害が<strong>同時に</strong>存在する→診断の鍵</div>
+  </div>
+
+  <div class="section-title">感覚系の局在</div>
+  <div class="card">
+    <table>
+      <tr><th>感覚</th><th>受容体→脊髄での交叉</th><th>伝導路</th><th>障害時の症状</th></tr>
+      <tr><td>触覚（識別）・振動覚・位置覚</td><td>同側後角で上行→延髄で交叉</td><td><span class="key">後索（同側上行）</span></td><td>患側の振動覚・位置覚↓→感覚性失調</td></tr>
+      <tr><td>温痛覚</td><td>脊髄後角で<span class="key">すぐ交叉</span>→対側上行</td><td><span class="key">脊髄視床路（対側上行）</span></td><td>対側の温痛覚↓</td></tr>
+    </table>
+    <div class="box">
+      <strong>解離性感覚障害のパターン：</strong><br>
+      ・<span class="key">脊髄半側切断（Brown-Séquard）：</span>患側：後索障害（振動覚↓）＋錐体路障害（麻痺）／対側：温痛覚↓<br>
+      ・<span class="key">脊髄中心部（syrinx）：</span>温痛覚のみ↓（後索は保たれる）→cape distribution（肩〜上肢）<br>
+      ・<span class="key">Wallenberg（延髄外側）：</span>患側顔面＋対側体幹の温痛覚↓（後索保持）
+    </div>
+  </div>
+
+  <div class="section-title">脳・脊髄の高位診断</div>
+  <div class="card">
+    <table>
+      <tr><th>障害部位</th><th>運動障害</th><th>感覚障害</th><th>その他</th></tr>
+      <tr><td>大脳皮質（一側）</td><td>対側顔面〜上下肢の片麻痺（上肢優位はMCA）</td><td>対側感覚障害</td><td>失語（左半球）・半側空間無視（右半球）・てんかん</td></tr>
+      <tr><td>内包後脚</td><td>対側<span class="key">純粋片麻痺</span>（顔面含む）</td><td>軽度</td><td>小さい病変で大きな麻痺</td></tr>
+      <tr><td>脳幹</td><td><span class="key">交叉性麻痺</span>（患側脳神経＋対側片麻痺）</td><td>交叉性感覚障害</td><td>眼球運動障害・嚥下障害</td></tr>
+      <tr><td>頸髄（C3〜C4以上）</td><td>四肢麻痺＋呼吸筋麻痺</td><td>障害レベル以下の全感覚↓</td><td>Horner症候群（C8〜T1）</td></tr>
+      <tr><td>腰髄・馬尾</td><td>下肢弛緩性麻痺</td><td>鞍状感覚障害（馬尾）</td><td>膀胱直腸障害・腱反射↓</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TAB2: 神経診察 -->
+<div class="panel" id="panel-1">
+  <div class="section-title">意識レベルの評価</div>
+  <div class="card">
+    <h3>JCS（Japan Coma Scale）</h3>
+    <table>
+      <tr><th>Group</th><th>スコア</th><th>状態</th></tr>
+      <tr><td rowspan="3"><span class="tag tag-green">Ⅰ：刺激なしで覚醒</span></td><td>1</td><td>だいたい意識清明だが今ひとつはっきりしない</td></tr>
+      <tr><td>2</td><td>見当識障害あり</td></tr>
+      <tr><td>3</td><td>自分の名前・生年月日が言えない</td></tr>
+      <tr><td rowspan="3"><span class="tag tag-orange">Ⅱ：刺激で覚醒</span></td><td>10</td><td>呼びかけで容易に開眼</td></tr>
+      <tr><td>20</td><td>呼びかけで開眼するが、すぐ閉眼</td></tr>
+      <tr><td>30</td><td>痛み刺激と呼びかけで辛うじて開眼</td></tr>
+      <tr><td rowspan="3"><span class="tag tag-red">Ⅲ：刺激で覚醒せず</span></td><td>100</td><td>痛み刺激で払いのけ動作</td></tr>
+      <tr><td>200</td><td>痛み刺激で手足を動かす・顔をしかめる</td></tr>
+      <tr><td>300</td><td>痛み刺激に全く反応しない</td></tr>
+    </table>
+    <div class="box">
+      <strong>GCS（Glasgow Coma Scale）：</strong>E（開眼4点）＋V（言語5点）＋M（運動6点）＝最高15点・最低3点<br>
+      GCS≤8→重症脳障害・挿管を考慮。最低点（E1V1M1＝GCS3）
+    </div>
+  </div>
+
+  <div class="section-title">瞳孔所見</div>
+  <div class="card">
+    <table>
+      <tr><th>所見</th><th>機序</th><th>原因</th></tr>
+      <tr><td><span class="key">縮瞳（ミオシス）</span><br>両側2mm以下</td><td>交感神経障害 or 副交感神経亢進</td><td>橋出血（針先様）・麻薬（モルヒネ）・有機リン・Horner</td></tr>
+      <tr><td><span class="key">散瞳（ミドリアシス）</span><br>両側6mm以上</td><td>副交感神経障害 or 交感神経亢進</td><td>テント切痕ヘルニア（動眼神経圧迫）・抗コリン薬・CO中毒・脳死</td></tr>
+      <tr><td>一側散瞳＋眼瞼下垂</td><td>動眼神経麻痺（副交感神経）</td><td>後交通動脈瘤破裂・テント切痕ヘルニア<br><span class="danger">⚠ 瞳孔関与→器質的疾患（糖尿病性動眼神経麻痺は瞳孔温存）</span></td></tr>
+      <tr><td>RAPD（相対的瞳孔求心路障害）</td><td>患側の視神経病変</td><td>Swinging flashlight testで患側照射時に両眼散瞳<br>視神経炎・網膜疾患</td></tr>
+      <tr><td>Horner症候群</td><td>交感神経下行路障害</td><td>縮瞳＋眼瞼下垂＋眼球陥凹<br>原因：Wallenberg・頸部交感神経・肺尖部腫瘍</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">反射と病的反射</div>
+  <div class="card">
+    <table>
+      <tr><th>反射</th><th>反射弓</th><th>意義</th></tr>
+      <tr><td>上腕二頭筋反射</td><td>C5〜C6</td><td>低下→C5/6障害、亢進→UMN障害</td></tr>
+      <tr><td>膝蓋腱反射（PTR）</td><td>L3〜L4</td><td>低下→L3/4障害・GBS・末梢神経障害</td></tr>
+      <tr><td>アキレス腱反射（ATR）</td><td>S1〜S2</td><td>最も早期に消失→GBS・糖尿病性ニューロパチー</td></tr>
+      <tr><td><span class="key">Babinski徴候</span></td><td>—</td><td>母趾背屈→UMN障害（正常新生児では陽性）</td></tr>
+      <tr><td>Hoffmann徴候</td><td>—</td><td>中指爪を弾いて母指が屈曲→頸髄UMN障害</td></tr>
+      <tr><td>Chaddock徴候</td><td>—</td><td>外踝周囲を搔いて母趾背屈→UMN障害</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TAB3: 検査・画像 -->
+<div class="panel" id="panel-2">
+  <div class="section-title">髄液検査の読み方</div>
+  <div class="card">
+    <table>
+      <tr><th>項目</th><th>正常値</th><th>異常の意義</th></tr>
+      <tr><td>開放圧</td><td>70〜180 mmH₂O</td><td>↑：頭蓋内圧亢進（脳腫瘍・SAH・静脈洞血栓）<br>↓：脊髄硬膜外腫瘍・低髄液圧</td></tr>
+      <tr><td>外観</td><td>水様透明</td><td>混濁：細菌性髄膜炎・細胞数↑↑<br>キサントクロミア：SAH（12h〜2週間）・黄疸</td></tr>
+      <tr><td>細胞数</td><td>&lt;5/μL（単核球）</td><td>好中球↑：細菌性・好中球性ウイルス（早期）<br>単核球↑：ウイルス・結核・真菌</td></tr>
+      <tr><td>蛋白</td><td>15〜45 mg/dL</td><td>↑↑（>100）：GBS・腫瘍・結核<br>正常で蛋白↑：<span class="key">蛋白細胞解離→GBS</span></td></tr>
+      <tr><td>糖（髄液/血糖比）</td><td>&gt;0.6（50〜75 mg/dL）</td><td>↓（<0.4）：細菌性・結核性・癌性髄膜炎<br>正常：ウイルス性・GBS</td></tr>
+      <tr><td>IgG index / OCB</td><td>&lt;0.7 / 陰性</td><td>↑・陽性：<span class="key">MS</span>（中枢性IgG産生↑）</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">神経画像の使い分け</div>
+  <div class="card">
+    <table>
+      <tr><th>検査</th><th>得意な病変</th><th>臨床的使いどころ</th></tr>
+      <tr><td>CT（単純）</td><td>急性出血（高吸収）・骨折・石灰化</td><td>救急第一選択・SAH・脳出血の確認</td></tr>
+      <tr><td>MRI T1</td><td>解剖学的構造・亜急性出血（高信号）・脂肪</td><td>腫瘍（Gd造影で増強）・萎縮評価</td></tr>
+      <tr><td>MRI T2/FLAIR</td><td>浮腫・脱髄・梗塞・腫瘍</td><td>白質病変（MS・NMOSD）・慢性病変</td></tr>
+      <tr><td><span class="key">MRI DWI（拡散強調）</span></td><td>急性虚血（細胞性浮腫）・CJD・膿瘍</td><td>脳梗塞超急性期（発症30分〜）・CJD診断</td></tr>
+      <tr><td>MRI FLAIR</td><td>皮質・髄液腔隣接病変</td><td>MS（脳室周囲・Dawson指）・SAH（急性期）</td></tr>
+      <tr><td>MRA/CTA</td><td>血管形態・動脈瘤・狭窄</td><td>SAH後の動脈瘤検索・頸動脈狭窄評価</td></tr>
+      <tr><td>SPECT/PET</td><td>脳血流・代謝・受容体</td><td>認知症鑑別（側頭頭頂↓：AD・後頭↓：DLB）<br>DaTSCAN：ドパミントランスポーター（PD）</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">神経電気生理</div>
+  <div class="card">
+    <table>
+      <tr><th>検査</th><th>評価内容</th><th>代表的疾患</th></tr>
+      <tr><td>神経伝導検査（NCS）</td><td>運動・感覚神経の伝導速度・振幅<br>脱髄（速度↓）vs 軸索（振幅↓）</td><td>GBS・CIDP・CMT・糖尿病性ニューロパチー</td></tr>
+      <tr><td>針筋電図（EMG）</td><td>安静時：線維自発電位・筋線維束攣縮<br>随意収縮：MUP（運動単位電位）の変化</td><td>神経原性（ALS・ニューロパチー）vs 筋原性（ミオパチー）</td></tr>
+      <tr><td>反復刺激試験</td><td>低頻度（3Hz）：Waning→MG<br>高頻度（50Hz）：Increment→LEMS</td><td>MG・LEMS・ボツリヌス症</td></tr>
+      <tr><td>脳波（EEG）</td><td>皮質電気活動・焦点・全般性異常</td><td>てんかん（3Hz棘徐波：欠神）<br>CJD（PSD）・HSV脳炎（PLEDs）</td></tr>
+      <tr><td>誘発電位</td><td>VEP：視覚路（視神経炎でP100延長）<br>BAEP：脳幹聴覚路<br>SEP：感覚路</td><td>MS（潜在病変検出）</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TAB4: クイズ -->
+<div class="panel" id="panel-3">
+  <div class="score-board">正解数：<span class="score-num" id="score">0</span> / <span id="total">0</span><button class="reset-btn" onclick="resetQuiz()">リセット</button></div>
+  <div id="quiz-container"></div>
+</div>
+
+<script>
+function switchTab(i){document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',i===j));}
+const quizData=[
+  {year:'2024年度',q:'右大脳半球（内包後脚）の病変で予想される神経症状の組み合わせとして正しいのはどれか。',options:['右顔面・右上下肢の弛緩性麻痺＋腱反射低下','左顔面・左上下肢の痙性麻痺＋腱反射亢進＋Babinski陽性','右顔面・左上下肢の交叉性麻痺','左上肢の弛緩性麻痺＋右体幹の解離性感覚障害','失語＋右片麻痺（左内包）'],answer:1,exp:'内包後脚は錐体路（上位運動ニューロン）が密集する部位。一側病変→対側の顔面・上下肢の均等な片麻痺（UMN徴候：腱反射亢進・Babinski陽性・痙性）。小さい病変で完全片麻痺が起こる（pure motor hemiplegia）。交叉性麻痺は脳幹病変の特徴（患側脳神経＋対側片麻痺）。弛緩性麻痺は下位MN障害（脊髄前角・末梢神経）。'},
+  {year:'2023年度',q:'Brown-Séquard症候群（脊髄半側切断）では、病変部と同側に何が起こるか？',options:['温痛覚低下（対側脊髄視床路障害）','振動覚・位置覚低下＋痙性麻痺（同側後索＋錐体路障害）','両側の弛緩性麻痺','cape distribution（肩〜上肢）の温痛覚低下','鞍状感覚障害'],answer:1,exp:'Brown-Séquardは脊髄半側切断（外傷・腫瘍・MS）。同側：後索障害（振動覚・位置覚↓・感覚性失調）＋錐体路障害（痙性麻痺）。対側：脊髄視床路障害（温痛覚↓）。触覚は軽度障害（両側を通る）。脊髄中心部（syrinx）は手袋型温痛覚↓・後索保持。Wallenbergは延髄外側：患側顔面＋対側体幹の温痛覚↓（後索保持）。'},
+  {year:'2022年度',q:'78歳男性。急に意識が悪くなり救急搬送。呼びかけると目を開けるが、すぐに閉じてしまう。痛み刺激で右手足を動かす。左手足は動かない。JCSは何か。',options:['JCS I-2','JCS II-20','JCS II-30','JCS III-100','JCS III-200'],answer:1,exp:'JCS II-20：「呼びかけで開眼するが、すぐ閉眼する」。Group II（刺激で覚醒）の20点。Group I：刺激なしで覚醒（1/2/3）。Group II：刺激で覚醒（10/20/30）。Group III：刺激で覚醒せず（100/200/300）。この患者は左片麻痺もあり、右大脳半球病変が疑われる。痛み刺激での右上下肢運動はGroup IIIの基準（100点）とは異なり、自発的な払いのけ動作ではなく片側のみ動くことに注意。'},
+  {year:'2025年度',q:'脳梗塞の超急性期（発症30分）に最も有用なMRI撮像法はどれか。',options:['T1強調像','T2強調像','FLAIR（液体減衰反転回復）','DWI（拡散強調像）','Gd造影T1強調像'],answer:3,exp:'DWI（拡散強調像）は急性虚血（細胞毒性浮腫）を発症30分〜数時間で高信号として検出できる最も早期の画像変化。T2/FLAIRは発症6〜24時間後から変化が出現する。Gd造影は血液脳関門破綻（発症数時間〜日単位）で有用。DWIはCJD（大脳皮質・基底核の拡散制限）・脳膿瘍（内部高信号）・エンケファリティス（皮質・海馬）の診断にも重要。'},
+  {year:'2024年度',q:'MG（重症筋無力症）の診断に用いる反復神経刺激試験の特徴的パターンはどれか。',options:['高頻度（50Hz）刺激でCMAPが100%以上増大（increment）','低頻度（3Hz）刺激でCMAPが10%以上減衰（waning/decrement）','全刺激頻度でCMAPが変化しない','針筋電図で持続的な筋線維自発電位','単一繊維筋電図でjitter低下'],answer:1,exp:'MGは低頻度（3Hz）反復刺激でシナプス間隙のACh減少→CMAP振幅が10%以上減衰（waning/decrement）。これはAChR数が減少しているシナプス後膜での神経筋伝達の失敗を反映する。LEMSは高頻度（50Hz）刺激でCa²⁺蓄積→ACh放出↑→CMAPが100%以上増大（increment）。単一繊維筋電図のjitter増大（waning増大）はMGで最感度の検査。'}
+];
+let scores=0;
+function buildQuiz(){const c=document.getElementById('quiz-container');document.getElementById('total').textContent=quizData.length;c.innerHTML=quizData.map((q,qi)=>`<div class="quiz-card" id="qcard-${qi}"><div class="quiz-year">${q.year}</div><div class="quiz-q">Q${qi+1}. ${q.q}</div><div class="options">${q.options.map((o,oi)=>`<div class="option" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</div>`).join('')}</div><div class="explanation" id="exp-${qi}"><span class="good">✓ 正解：${String.fromCharCode(65+q.answer)}. ${q.options[q.answer]}</span><br><br>${q.exp}</div></div>`).join('');}
+function answer(qi,oi){const q=quizData[qi];const card=document.getElementById('qcard-'+qi);if(card.dataset.done)return;card.dataset.done='1';document.querySelectorAll(`[id^="opt-${qi}-"]`).forEach(el=>el.style.pointerEvents='none');document.getElementById(`opt-${qi}-${oi}`).classList.add(oi===q.answer?'correct':'wrong');if(oi!==q.answer)document.getElementById(`opt-${qi}-${q.answer}`).classList.add('correct');document.getElementById('exp-'+qi).classList.add('show');if(oi===q.answer){scores++;document.getElementById('score').textContent=scores;}}
+function resetQuiz(){scores=0;document.getElementById('score').textContent=0;buildQuiz();}
+buildQuiz();
+</script>
+</body>
+</html>

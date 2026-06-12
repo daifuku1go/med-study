@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>① 神経変性疾患</title>
+<style>
+  :root{--bg:#0f1117;--card:#1a1d27;--border:#2e3150;--accent:#6c8fff;--accent2:#a78bfa;--accent3:#34d399;--warn:#f59e0b;--danger:#f87171;--text:#e2e8f0;--muted:#8892b0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Gothic',sans-serif;font-size:14px;line-height:1.6}
+  h1{text-align:center;padding:20px;font-size:20px;color:var(--accent);border-bottom:1px solid var(--border)}
+  .tabs{display:flex;border-bottom:2px solid var(--border);background:var(--card);flex-wrap:wrap}
+  .tab{padding:12px 18px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-size:13px}
+  .tab:hover{color:var(--text)}.tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:bold}
+  .panel{display:none;padding:20px;max-width:1000px;margin:0 auto}.panel.active{display:block}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+  .card h3{color:var(--accent2);margin-bottom:10px;font-size:15px}
+  .section-title{font-size:17px;color:var(--accent);margin:20px 0 12px;border-left:3px solid var(--accent);padding-left:10px}
+  table{width:100%;border-collapse:collapse;margin:10px 0}
+  th{background:#252840;color:var(--accent);padding:8px;text-align:left;font-size:12px}
+  td{padding:7px 8px;border-top:1px solid var(--border);font-size:13px;vertical-align:top}
+  tr:hover td{background:#1e2235}
+  .tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;margin:2px}
+  .tag-blue{background:#1e3a5f;color:#60a5fa}.tag-purple{background:#2d1f4e;color:#c084fc}.tag-green{background:#14332a;color:#4ade80}.tag-orange{background:#3d2a00;color:#fbbf24}.tag-red{background:#3d1515;color:#f87171}
+  .key{color:var(--warn);font-weight:bold}.danger{color:var(--danger);font-weight:bold}.good{color:var(--accent3);font-weight:bold}
+  ul{padding-left:18px}li{margin-bottom:4px;font-size:13px}
+  .box{padding:12px;background:#13162a;border-radius:8px;margin-top:10px;font-size:13px;line-height:1.8}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+  .flow-item{background:#252840;border-radius:6px;padding:4px 10px;font-size:12px}
+  .arrow{color:var(--muted)}
+  .quiz-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+  .quiz-q{font-weight:bold;margin-bottom:14px;font-size:14px;line-height:1.8}
+  .quiz-year{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .options{display:grid;gap:8px}
+  .option{padding:10px 14px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:13px}
+  .option:hover{border-color:var(--accent);background:#1e2235}
+  .option.correct{border-color:var(--accent3);background:#14332a;color:#4ade80}
+  .option.wrong{border-color:var(--danger);background:#3d1515;color:var(--danger)}
+  .explanation{margin-top:14px;padding:12px;background:#13162a;border-radius:8px;font-size:13px;line-height:1.8;display:none}
+  .explanation.show{display:block}
+  .score-board{text-align:center;padding:16px;background:var(--card);border-radius:10px;margin-bottom:20px;font-size:16px}
+  .score-num{font-size:28px;color:var(--accent);font-weight:bold}
+  .reset-btn{display:block;margin:10px auto;padding:10px 24px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0}
+  .col{background:#13162a;border-radius:8px;padding:12px}
+  .col h4{margin-bottom:8px;font-size:13px}
+  @media(max-width:600px){.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h1>① 神経変性疾患</h1>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">🤸 パーキンソン病</div>
+  <div class="tab" onclick="switchTab(1)">🔄 パーキンソン症候群</div>
+  <div class="tab" onclick="switchTab(2)">⚡ ALS・脊髄小脳</div>
+  <div class="tab" onclick="switchTab(3)">📝 過去問クイズ</div>
+</div>
+
+<!-- TAB1: パーキンソン病 -->
+<div class="panel active" id="panel-0">
+  <div class="section-title">パーキンソン病（PD）</div>
+  <div class="card">
+    <h3>4大症状（TRAP）と診断</h3>
+    <div class="flow">
+      <div class="flow-item"><strong>T</strong>remor 安静時振戦（4-6Hz・pill-rolling）</div>
+      <div class="flow-item"><strong>R</strong>igidity 筋固縮（歯車様・鉛管様）</div>
+      <div class="flow-item"><strong>A</strong>kinesia 無動・寡動</div>
+      <div class="flow-item"><strong>P</strong>ostural instability 姿勢反射障害</div>
+    </div>
+    <table style="margin-top:10px">
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td>病理</td><td>黒質線条体ドパミンニューロン変性<br><span class="key">Lewy小体</span>（αシヌクレイン）形成</td></tr>
+      <tr><td>初発症状</td><td>安静時振戦が最多（片側から始まり非対称性）</td></tr>
+      <tr><td>非運動症状</td><td>便秘・嗅覚低下（先行症状）・RBD・うつ・認知症・起立性低血圧・排尿障害</td></tr>
+      <tr><td>姿勢・歩行</td><td>前傾前屈姿勢・小刻み歩行・すくみ足・加速歩行（festination）・方向転換困難</td></tr>
+      <tr><td>診断</td><td>臨床診断（UK PDS Brain Bank Criteria）<br>DaTSCAN（ドパミントランスポーターシンチ）→線条体取込↓</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">パーキンソン病の治療</div>
+  <div class="card">
+    <table>
+      <tr><th>薬剤</th><th>機序</th><th>特徴・注意点</th></tr>
+      <tr><td><span class="key">L-dopa（レボドパ）</span></td><td>ドパミン前駆物質→DDC阻害薬（カルビドパ）と合剤</td><td>最も有効・長期使用でウェアリングオフ・ジスキネジア<br>空腹時服用で吸収↑</td></tr>
+      <tr><td>ドパミンアゴニスト</td><td>D2/D3受容体直接刺激<br>プラミペキソール・ロピニロール</td><td>若年発症に先行使用・傾眠・幻覚・衝動制御障害<br>ウェアリングオフが少ない</td></tr>
+      <tr><td>MAO-B阻害薬</td><td>ドパミン分解阻害<br>セレギリン・ラサギリン</td><td>単独または補助・神経保護効果の議論あり</td></tr>
+      <tr><td>COMT阻害薬</td><td>L-dopaの末梢分解阻害<br>エンタカポン</td><td>ウェアリングオフ対策・L-dopaと併用</td></tr>
+      <tr><td>抗コリン薬</td><td>ムスカリン受容体遮断<br>トリヘキシフェニジル</td><td>振戦に有効・高齢者に認知機能悪化リスク</td></tr>
+      <tr><td>アマンタジン</td><td>NMDA受容体拮抗・ドパミン遊離↑</td><td>ジスキネジアの改善・幻覚に注意</td></tr>
+    </table>
+    <div class="box">
+      <strong>ウェアリングオフ（wearing-off）：</strong>L-dopa効果が次の服薬前に切れる→服薬回数増加・徐放剤・COMT阻害薬・MAO-B阻害薬で対処<br>
+      <strong>ジスキネジア：</strong>L-dopa服薬後のピーク時に不随意運動→L-dopa減量・アマンタジン
+    </div>
+  </div>
+</div>
+
+<!-- TAB2: パーキンソン症候群 -->
+<div class="panel" id="panel-1">
+  <div class="section-title">非定型パーキンソン症候群の鑑別</div>
+  <div class="card">
+    <table>
+      <tr><th></th><th>PD</th><th>MSA</th><th>PSP</th><th>CBD</th></tr>
+      <tr><td>αシヌクレイン</td><td>Lewy小体</td><td>グリア細胞質封入体（GCI）</td><td>—</td><td>—</td></tr>
+      <tr><td>タウ蓄積</td><td>—</td><td>—</td><td><span class="key">4R-tau（NFT）</span></td><td><span class="key">4R-tau（バルーン細胞）</span></td></tr>
+      <tr><td>振戦</td><td>安静時振戦（著明）</td><td>軽度</td><td>少ない</td><td>少ない</td></tr>
+      <tr><td>対称性</td><td>非対称</td><td>比較的対称</td><td>比較的対称</td><td><span class="key">非対称（一側優位）</span></td></tr>
+      <tr><td>眼球運動</td><td>正常〜軽度障害</td><td>正常〜軽度</td><td><span class="key">垂直性核上性眼球運動麻痺（下方視↓）</span></td><td>障害あり</td></tr>
+      <tr><td>特徴的症状</td><td>嗅覚低下・RBD</td><td><span class="key">高度自律神経障害</span>（起立性低血圧・排尿障害）<br>小脳症状（MSA-C）</td><td><span class="key">易転倒（後方へ）</span><br>axial rigidity・認知症</td><td><span class="key">皮質基底核症候群</span>：失行・alien hand・皮質性感覚障害</td></tr>
+      <tr><td>L-dopa反応</td><td><span class="good">著効</span></td><td>不良（一時的）</td><td><span class="danger">無効</span></td><td><span class="danger">無効</span></td></tr>
+      <tr><td>MRI</td><td>ほぼ正常</td><td>MSA-P：被殻外側縁T2低信号<br>MSA-C：<span class="key">hot cross bun sign</span>（橋十字サイン）</td><td>中脳被蓋萎縮（<span class="key">ハチドリサイン</span>）<br>矢状断で中脳面積↓</td><td>—</td></tr>
+      <tr><td>予後</td><td>比較的良好</td><td>発症後7〜10年で死亡</td><td>発症後6〜10年で死亡</td><td>発症後6〜8年で死亡</td></tr>
+    </table>
+    <div class="box">
+      <strong>MSA（多系統萎縮症）病型：</strong><br>
+      MSA-P（パーキンソン型：旧SND）：パーキンソニズム優位<br>
+      MSA-C（小脳型：旧OPCA）：小脳失調優位・hot cross bun sign<br>
+      MSA-A（自律神経型：旧Shy-Drager症候群）：高度自律神経障害<br><br>
+      <span class="danger">⚠ MSAの自律神経：起立性低血圧が特に高度→L-dopa開始時に増悪注意</span>
+    </div>
+  </div>
+</div>
+
+<!-- TAB3: ALS・脊髄小脳 -->
+<div class="panel" id="panel-2">
+  <div class="section-title">筋萎縮性側索硬化症（ALS）</div>
+  <div class="card">
+    <h3>ALS = 上位＋下位運動ニューロン障害の同時合併</h3>
+    <div class="grid3">
+      <div class="col">
+        <h4 style="color:#60a5fa">上位MN障害</h4>
+        <ul>
+          <li>腱反射亢進</li>
+          <li>Babinski徴候陽性</li>
+          <li>痙性（spasticity）</li>
+          <li>病的反射</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4 style="color:#f87171">下位MN障害</h4>
+        <ul>
+          <li>筋萎縮</li>
+          <li>筋線維束攣縮（fasciculation）</li>
+          <li>腱反射低下・消失</li>
+          <li>弛緩性麻痺</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4 style="color:#4ade80">保たれる機能</h4>
+        <ul>
+          <li><span class="key">感覚は保たれる</span></li>
+          <li>眼球運動保持（末期まで）</li>
+          <li>膀胱直腸機能保持</li>
+          <li>褥瘡ができにくい</li>
+        </ul>
+      </div>
+    </div>
+    <table style="margin-top:12px">
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td>疫学</td><td>発症年齢50〜70歳・男性やや多・家族性10%（SOD1・TDP43・FUS・C9orf72）</td></tr>
+      <tr><td>初発症状</td><td>上肢遠位筋（手）の筋萎縮・球症状（構音障害・嚥下障害）から始まることが多い</td></tr>
+      <tr><td>診断</td><td>El Escorial基準（4領域：球・頸髄・胸髄・腰仙髄）<br>針筋電図：広範な慢性・急性神経原性変化</td></tr>
+      <tr><td>予後</td><td>呼吸筋麻痺で死亡・発症3〜5年（球症状初発はやや予後不良）</td></tr>
+      <tr><td>治療</td><td><span class="key">リルゾール</span>（グルタミン酸遊離抑制・唯一の延命薬・約3ヶ月延命）<br>エダラボン（酸化ストレス抑制）・非侵襲的人工呼吸器（NPPV）・胃ろう</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">脊髄小脳変性症（SCD）</div>
+  <div class="card">
+    <table>
+      <tr><th>疾患</th><th>遺伝</th><th>特徴</th></tr>
+      <tr><td>SCA1（ATXN1）</td><td>AD・CAGリピート</td><td>小脳失調＋錐体路症状・眼球運動障害</td></tr>
+      <tr><td>SCA3（MJD：Machado-Joseph病）</td><td>AD・CAGリピート</td><td><span class="key">最多の遺伝性SCA</span>・眼球突出・顔面筋線維束攣縮</td></tr>
+      <tr><td>SCA6（CACNA1A）</td><td>AD・CAGリピート</td><td>純粋小脳型・遅発（40〜50歳）・比較的良性</td></tr>
+      <tr><td>Friedreich失調症</td><td><span class="key">AR</span>・GAA三塩基リピート（FXN）</td><td>10〜20歳発症・後索＋脊髄小脳路＋錐体路<br>感覚失調・<span class="key">肥大型心筋症</span>・糖尿病・凹足</td></tr>
+      <tr><td>DRPLA</td><td>AD・CAGリピート</td><td>小脳失調＋ミオクローヌス＋てんかん＋認知症</td></tr>
+    </table>
+    <div class="box">
+      <strong>孤発性（非遺伝性）SCD：</strong><br>
+      ・MSA-C（最多の孤発性SCD）：小脳失調＋自律神経障害＋パーキンソニズム<br>
+      ・傍腫瘍性小脳変性症：抗Yo（抗cdr2）抗体・婦人科腫瘍（卵巣・乳腺）<br>
+      ・ビタミンE欠乏性失調症・グルテン失調症
+    </div>
+  </div>
+</div>
+
+<!-- TAB4: クイズ -->
+<div class="panel" id="panel-3">
+  <div class="score-board">正解数：<span class="score-num" id="score">0</span> / <span id="total">0</span><button class="reset-btn" onclick="resetQuiz()">リセット</button></div>
+  <div id="quiz-container"></div>
+</div>
+
+<script>
+function switchTab(i){document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',i===j));}
+const quizData=[
+  {year:'2024年度',q:'68歳男性。2年前から右手の安静時振戦、右上肢の歯車様筋固縮。小刻み歩行・前傾姿勢。嗅覚低下も自覚。レボドパ内服で症状が著明改善した。最も考えられる診断と特徴的な病理所見は？',options:['多系統萎縮症（MSA）→グリア細胞質封入体','進行性核上性麻痺（PSP）→神経原線維変化（4R-tau）','パーキンソン病（PD）→Lewy小体（αシヌクレイン）','大脳皮質基底核変性症（CBD）→バルーン細胞','本態性振戦→病理変化なし'],answer:2,exp:'PD典型例。安静時振戦（pill-rolling・4-6Hz）・歯車様筋固縮・小刻み歩行・嗅覚低下（先行症状）・L-dopa著効。黒質ドパミンニューロン変性→Lewy小体（αシヌクレイン凝集体）が病理所見。MSAはグリア細胞質封入体・L-dopa無効。PSPは4R-tau・垂直性眼球運動障害・L-dopa無効。CBDは4R-tau・alien hand・一側優位。'},
+  {year:'2023年度',q:'72歳男性。1年前から後方への転倒を繰り返す。下方への眼球運動が困難で、首が伸展している（axial rigidity）。レボドパが無効。MRI矢状断で中脳被蓋の萎縮（ハチドリサイン）を認める。診断は？',options:['パーキンソン病','多系統萎縮症（MSA-C）','進行性核上性麻痺（PSP）','大脳皮質基底核変性症','本態性振戦'],answer:2,exp:'PSP（進行性核上性麻痺）の典型例。垂直性核上性眼球運動麻痺（特に下方視障害）・早期からの後方転倒・体幹の伸展硬直（axial rigidity）・L-dopa無効・中脳被蓋萎縮（ハチドリサイン）。4R-tau蓄積が病理。PSP vs PD：PDは前屈姿勢・転倒は進行期・L-dopa著効。MSA-Cはhot cross bun sign・高度自律神経障害。'},
+  {year:'2025年度',q:'55歳男性。半年で右手の筋萎縮と筋線維束攣縮が進行。同時に右上肢の腱反射が亢進しBabinski徴候陽性。感覚障害なし。針筋電図で頸髄・胸髄・腰仙髄に慢性神経原性変化。診断と唯一の延命薬は？',options:['CIDP → IVIg','ALS → リルゾール','多発性筋炎 → ステロイド','GBS → 血漿交換','脊髄腫瘍 → 手術'],answer:1,exp:'ALS（筋萎縮性側索硬化症）の典型例。上位MN（腱反射亢進・Babinski陽性）＋下位MN（筋萎縮・筋線維束攣縮・筋電図異常）の同時合併＋感覚保持が鍵。4領域（球・頸・胸・腰）に広汎な変性→El Escorial基準。唯一の延命薬はリルゾール（グルタミン酸遊離抑制・約3ヶ月延命）。エダラボンも承認されている。非侵襲的人工呼吸器（NPPV）・胃ろうで生命予後改善。'},
+  {year:'2022年度',q:'60歳女性。2年前から起立性低血圧・排尿障害（神経因性膀胱）・便秘が出現。次第に小脳失調が加わり、MRIで橋に十字形のT2高信号（hot cross bun sign）を認めた。診断は？',options:['パーキンソン病','多系統萎縮症（MSA-C）','進行性核上性麻痺','NMOSD','Friedreich失調症'],answer:1,exp:'MSA-C（小脳型多系統萎縮症）の典型例。小脳失調＋高度自律神経障害（起立性低血圧・神経因性膀胱）＋hot cross bun sign（橋の横走線維・縫線核の変性による十字形T2高信号）。αシヌクレイン→グリア細胞質封入体が病理。L-dopaは一時的に有効なことがあるが長期効果乏しい。PSPは中脳萎縮（ハチドリサイン）・垂直性眼球運動障害。'},
+  {year:'2024年度',q:'SCA3（Machado-Joseph病）に関して正しいのはどれか。',options:['常染色体劣性遺伝・GAA三塩基リピート伸長','最も頻度が高い遺伝性SCDで・CAGリピート伸長・眼球突出が特徴','肥大型心筋症・凹足を合併する','純粋小脳型で予後良好','乳児期から発症する常染色体優性疾患'],answer:1,exp:'SCA3（MJD：Machado-Joseph病）は遺伝性SCAで最も頻度が高い（世界的）。常染色体優性・ATXN3遺伝子のCAGリピート伸長。小脳失調＋眼球突出（眼瞼後退）・顔面筋線維束攣縮・錐体路症状・錐体外路症状。表現促進現象あり（世代を経るごとに重症化）。Friedreich失調症はAR・GAA三塩基リピート・肥大型心筋症・凹足・10〜20歳発症。'}
+];
+let scores=0;
+function buildQuiz(){const c=document.getElementById('quiz-container');document.getElementById('total').textContent=quizData.length;c.innerHTML=quizData.map((q,qi)=>`<div class="quiz-card" id="qcard-${qi}"><div class="quiz-year">${q.year}</div><div class="quiz-q">Q${qi+1}. ${q.q}</div><div class="options">${q.options.map((o,oi)=>`<div class="option" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</div>`).join('')}</div><div class="explanation" id="exp-${qi}"><span class="good">✓ 正解：${String.fromCharCode(65+q.answer)}. ${q.options[q.answer]}</span><br><br>${q.exp}</div></div>`).join('');}
+function answer(qi,oi){const q=quizData[qi];const card=document.getElementById('qcard-'+qi);if(card.dataset.done)return;card.dataset.done='1';document.querySelectorAll(`[id^="opt-${qi}-"]`).forEach(el=>el.style.pointerEvents='none');document.getElementById(`opt-${qi}-${oi}`).classList.add(oi===q.answer?'correct':'wrong');if(oi!==q.answer)document.getElementById(`opt-${qi}-${q.answer}`).classList.add('correct');document.getElementById('exp-'+qi).classList.add('show');if(oi===q.answer){scores++;document.getElementById('score').textContent=scores;}}
+function resetQuiz(){scores=0;document.getElementById('score').textContent=0;buildQuiz();}
+buildQuiz();
+</script>
+</body>
+</html>
